@@ -62,18 +62,42 @@ End Function
 Private Sub ComboBoxYear_Initialize()
     Dim nyear, nmonth, nDay As Integer
     Dim nHour, nMin As Integer
+    
     Dim i, j As Integer
     Dim lastDay As Integer
     
-    nyear = year(Now())
-    nmonth = Month(Now())
-    nDay = Day(Now())
+    Dim sheetDate, currDate As Date
+    Dim isThisYear As Boolean
     
-    nHour = Hour(Now())
-    nMin = Minute(Now())
+    sheetDate = Range("c10").Value
+    currDate = Now()
+    
+    If ((year(currDate) - year(sheetDate)) = 0) Then
+    
+        isThisYear = True
+        
+        nyear = year(sheetDate)
+        nmonth = Month(sheetDate)
+        nDay = Day(sheetDate)
+        
+        nHour = Hour(sheetDate)
+        nMin = Minute(sheetDate)
+        
+    Else
+        
+        isThisYear = False
+        
+        nyear = year(currDate)
+        nmonth = Month(currDate)
+        nDay = Day(currDate)
+        
+        nHour = Hour(currDate)
+        nMin = Minute(currDate)
+            
+    End If
     
     
-    lastDay = Day(GetNowLast(Now()))
+    lastDay = Day(GetNowLast(IIf(isThisYear, sheetDate, currDate)))
     Debug.Print lastDay
     
     For i = nyear - 10 To nyear
@@ -106,7 +130,7 @@ Private Sub ComboBoxYear_Initialize()
     ComboBoxDay.Value = nDay
     
     ComboBoxHour.Value = IIf(nHour > 12, nHour - 12, nHour)
-    ComboBoxMinute.Value = whichSection(Minute(Now()))
+    ComboBoxMinute.Value = whichSection(IIf(isThisYear, Minute(sheetDate), Minute(currDate)))
     
    
     If nHour > 12 Then
