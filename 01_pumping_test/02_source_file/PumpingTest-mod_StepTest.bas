@@ -1,4 +1,4 @@
-Attribute VB_Name = "StepTest"
+Attribute VB_Name = "mod_StepTest"
 Option Explicit
 
 

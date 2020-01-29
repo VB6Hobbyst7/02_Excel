@@ -1,28 +1,28 @@
-Attribute VB_Name = "SetTime_LongTest"
-Public myTime As Integer
+Attribute VB_Name = "mod_SetTime_LongTest"
+Public MY_TIME As Integer
 
 
 
-'10-77 : 2880 (68)
-'78-101: recover (24)
+'10-77 : 2880 (68) - longterm pumping test
+'78-101: recover (24) - recover test
 
 Sub set_daydifference()
 
-    Dim nTime() As Integer
+    Dim n_passed_time() As Integer
     Dim i As Integer
     Dim day1, day2 As Integer
     
-    ReDim nTime(1 To 92)
+    ReDim n_passed_time(1 To 92)
      
     For i = 1 To 92
-        nTime(i) = Cells(i + 9, "D").Value
+        n_passed_time(i) = Cells(i + 9, "D").Value
         If (i > 68) Then
-            nTime(i) = Cells(i + 9, "D").Value + 2880
+            n_passed_time(i) = Cells(i + 9, "D").Value + 2880
         End If
     Next i
     
     For i = 1 To 92
-        Cells(i + 9, "h").Value = Range("c10").Value + nTime(i) / 1440
+        Cells(i + 9, "h").Value = Range("c10").Value + n_passed_time(i) / 1440
     Next i
     
     Range("H10:H101").Select
@@ -70,7 +70,7 @@ Function initialize_myTime() As Integer
 
     'Range("G17").Value = 840 + 60 * (i - 35)
 
-    initialize_myTime = (Sheet9.Range("g17").Value - 840) / 60 + 35
+    initialize_myTime = (shSkinFactor.Range("g17").Value - 840) / 60 + 35
 
    
 End Function
@@ -79,60 +79,60 @@ Sub OptionButton_Setting(i As Integer)
 
 
     Select Case i
-    Case 38:
-        Sheet4.Frame1.Controls("OptionButton11").Value = True
-        myTime = 38
-    Case 39:
-        Sheet4.Frame1.Controls("OptionButton12").Value = True
-        myTime = 39
-    Case 40:
-        Sheet4.Frame1.Controls("OptionButton13").Value = True
-        myTime = 40
-    Case 41:
-        Sheet4.Frame1.Controls("OptionButton14").Value = True
-        myTime = 41
-    Case 42:
-        Sheet4.Frame1.Controls("OptionButton15").Value = True
-        myTime = 42
-    Case 43:
-        Sheet4.Frame1.Controls("OptionButton16").Value = True
-        myTime = 43
-    Case 44:
-        Sheet4.Frame1.Controls("OptionButton17").Value = True
-        myTime = 44
-    Case Else:
-        Sheet4.Frame1.Controls("OptionButton14").Value = True
-        myTime = 41
+        Case 38:
+            shLongTermTest.Frame1.Controls("OptionButton11").Value = True
+            MY_TIME = 38
+        Case 39:
+            shLongTermTest.Frame1.Controls("OptionButton12").Value = True
+            MY_TIME = 39
+        Case 40:
+            shLongTermTest.Frame1.Controls("OptionButton13").Value = True
+            MY_TIME = 40
+        Case 41:
+            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
+            MY_TIME = 41
+        Case 42:
+            shLongTermTest.Frame1.Controls("OptionButton15").Value = True
+            MY_TIME = 42
+        Case 43:
+            shLongTermTest.Frame1.Controls("OptionButton16").Value = True
+            MY_TIME = 43
+        Case 44:
+            shLongTermTest.Frame1.Controls("OptionButton17").Value = True
+            MY_TIME = 44
+        Case Else:
+            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
+            MY_TIME = 41
     End Select
 
 
 End Sub
 
 Sub TimeSetting()
-    Dim stable, h1, h2, myRandom As Integer
+    Dim stable_time, h1, h2, my_random_time As Integer
     Dim myRange As String
            
-    stable = find_stable_time()
+    stable_time = find_stable_time()
     
-    If myTime = 0 Then
+    If MY_TIME = 0 Then
     
-        myTime = initialize_myTime
-        myRandom = myTime
-        OptionButton_Setting (myTime)
+        MY_TIME = initialize_myTime
+        my_random_time = MY_TIME
+        OptionButton_Setting (MY_TIME)
         'Frame1.Controls("OptionButton14").Value = True
     Else
-        myRandom = myTime
+        my_random_time = MY_TIME
     End If
     
-    If stable < myRandom Then
-        h1 = stable
-        h2 = myRandom
+    If stable_time < my_random_time Then
+        h1 = stable_time
+        h2 = my_random_time
         Range("ab" & CStr(h1)).Select
         myRange = "AB" & CStr(h1) & ":AB" & CStr(h2)
         
-    ElseIf stable > myRandom Then
-        h1 = myRandom
-        h2 = stable
+    ElseIf stable_time > my_random_time Then
+        h1 = my_random_time
+        h2 = stable_time
         Range("ab" & CStr(h2 + 1)).Select
         myRange = "AB" & CStr(h1 + 1) & ":AB" & CStr(h2 + 1)
     Else
@@ -141,7 +141,7 @@ Sub TimeSetting()
               
     
     Selection.AutoFill Destination:=Range(myRange), Type:=xlFillDefault
-    setSkinTime (myTime)
+    setSkinTime (MY_TIME)
     
     Selection.End(xlToLeft).Select
     Selection.End(xlToLeft).Select
@@ -153,9 +153,9 @@ Sub setSkinTime(i As Integer)
 
     Application.ScreenUpdating = False
     
-    Sheet9.Activate
+    shSkinFactor.Activate
     Range("G17").Value = 840 + 60 * (i - 35)
-    Sheet4.Activate
+    shLongTermTest.Activate
     
     Application.ScreenUpdating = True
 
@@ -164,30 +164,30 @@ End Sub
 Sub setForRandomTime(i As Integer)
 
     Select Case i
-    Case 38:
-        Sheet4.Frame1.Controls("OptionButton11").Value = True
-        myTime = 38
-    Case 39:
-        Sheet4.Frame1.Controls("OptionButton12").Value = True
-        myTime = 39
-    Case 40:
-        Sheet4.Frame1.Controls("OptionButton13").Value = True
-        myTime = 40
-    Case 41:
-        Sheet4.Frame1.Controls("OptionButton14").Value = True
-        myTime = 41
-    Case 42:
-        Sheet4.Frame1.Controls("OptionButton15").Value = True
-        myTime = 42
-    Case 43:
-        Sheet4.Frame1.Controls("OptionButton16").Value = True
-        myTime = 43
-    Case 44:
-        Sheet4.Frame1.Controls("OptionButton17").Value = True
-        myTime = 44
-    Case Else:
-        Sheet4.Frame1.Controls("OptionButton14").Value = True
-        myTime = 41
+        Case 38:
+            shLongTermTest.Frame1.Controls("OptionButton11").Value = True
+            MY_TIME = 38
+        Case 39:
+            shLongTermTest.Frame1.Controls("OptionButton12").Value = True
+            MY_TIME = 39
+        Case 40:
+            shLongTermTest.Frame1.Controls("OptionButton13").Value = True
+            MY_TIME = 40
+        Case 41:
+            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
+            MY_TIME = 41
+        Case 42:
+            shLongTermTest.Frame1.Controls("OptionButton15").Value = True
+            MY_TIME = 42
+        Case 43:
+            shLongTermTest.Frame1.Controls("OptionButton16").Value = True
+            MY_TIME = 43
+        Case 44:
+            shLongTermTest.Frame1.Controls("OptionButton17").Value = True
+            MY_TIME = 44
+        Case Else:
+            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
+            MY_TIME = 41
     End Select
 
 
@@ -197,26 +197,26 @@ Sub setForRandomTime(i As Integer)
 End Sub
 
 Sub RandomTimeSetting()
-    Dim myRandom As Integer
-    Dim stable, h1, h2 As Integer
+    Dim my_random_time As Integer
+    Dim stable_time, h1, h2 As Integer
     Dim myRange As String
            
     Randomize                                    'Initialize the Rnd function
      
-    myRandom = CInt(38 + Rnd * 6)                'Generate a random number between 5-100
-    'MsgBox CStr(myRandom)
+    my_random_time = CInt(38 + Rnd * 6)                'Generate a random number between 5-100
+    'MsgBox CStr(my_random_time)
     
-    stable = find_stable_time()
+    stable_time = find_stable_time()
     
-    If stable < myRandom Then
-        h1 = stable
-        h2 = myRandom
+    If stable_time < my_random_time Then
+        h1 = stable_time
+        h2 = my_random_time
         Range("ab" & CStr(h1)).Select
         myRange = "AB" & CStr(h1) & ":AB" & CStr(h2)
         
-    ElseIf stable > myRandom Then
-        h1 = myRandom
-        h2 = stable
+    ElseIf stable_time > my_random_time Then
+        h1 = my_random_time
+        h2 = stable_time
         Range("ab" & CStr(h2 + 1)).Select
         myRange = "AB" & CStr(h1 + 1) & ":AB" & CStr(h2 + 1)
     Else
@@ -225,7 +225,7 @@ Sub RandomTimeSetting()
               
     Selection.AutoFill Destination:=Range(myRange), Type:=xlFillDefault
     
-    Call setForRandomTime(myRandom)
+    Call setForRandomTime(my_random_time)
     
     Selection.End(xlToLeft).Select
     Selection.End(xlToLeft).Select
@@ -294,7 +294,7 @@ Sub findAnswer_LongTest()
         cellBLACK ("k8")
     End If
     
-    Sheet9.Range("d5").Value = Round(Range("S1").Value, 4)
+    shSkinFactor.Range("d5").Value = Round(Range("S1").Value, 4)
     
 End Sub
 

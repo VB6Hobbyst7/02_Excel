@@ -1,4 +1,4 @@
-Attribute VB_Name = "ChartModify"
+Attribute VB_Name = "mod_ChartModify"
 Option Explicit
 
 ' 2019/11/27 --- adjustment of chart's graph position and x, y scale

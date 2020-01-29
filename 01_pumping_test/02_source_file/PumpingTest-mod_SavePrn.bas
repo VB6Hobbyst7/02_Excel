@@ -1,4 +1,4 @@
-Attribute VB_Name = "SavePrn"
+Attribute VB_Name = "mod_SavePrn"
 Global WB_NAME As String
 
 

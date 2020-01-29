@@ -1,14 +1,14 @@
-Attribute VB_Name = "CopyLongTerm"
+Attribute VB_Name = "mod_CopyLongTerm"
 Sub make_step_document()
     '
     ' 단계양수시험 복사
-    '
+    ' select last sheet -- Sheets(Sheets.Count).Select
 
     '
     Application.ScreenUpdating = False
     
-    Sheets("단계양수시험").Select
-    Sheets("단계양수시험").Copy Before:=Sheets(12)
+    shStepTest.Select
+    shStepTest.Copy Before:=Sheets(Sheets.Count)
     Application.GoTo Reference:="Print_Area"
     Selection.Copy
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
@@ -41,6 +41,25 @@ Sub make_step_document()
     
 End Sub
 
+
+
+Sub test_sheet_bynumber()
+    
+    Dim i, nSheetsCount, nWell  As Integer
+    Dim strSheetsName(50) As String
+    
+    nSheetsCount = ThisWorkbook.Sheets.Count
+    nWell = 0
+    
+    For i = 1 To nSheetsCount
+        strSheetsName(i) = ThisWorkbook.Sheets(i).name
+        Sheets(i).Activate
+        MsgBox (strSheetsName(i) & " sheets : " & i)
+    Next i
+    
+End Sub
+
+
 Sub make_long_document()
     '
     ' 장기양수시험복사 매크로
@@ -48,8 +67,8 @@ Sub make_long_document()
 
     Application.ScreenUpdating = False
 
-    Sheets("장기양수시험").Select
-    Sheets("장기양수시험").Copy Before:=Sheets(12)
+    shLongTermTest.Select
+    shLongTermTest.Copy Before:=Sheets(Sheets.Count)
     
     Application.GoTo Reference:="Print_Area"
     Selection.Copy
