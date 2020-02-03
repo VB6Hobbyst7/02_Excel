@@ -196,34 +196,32 @@ Function get_efficiency(ByVal q As Variant) As Variant
 
     Dim result As Variant
     
-    If (q < 57.6) Then
+    If (q < 72) Then
         result = 40
-    ElseIf (q < 72) Then
-        result = 42
     ElseIf (q < 86.4) Then
-        result = 45
+        result = 42
     ElseIf (q < 115.2) Then
-        result = 48
+        result = 45
     ElseIf (q < 144) Then
-        result = 50
+        result = 48
     ElseIf (q < 216) Then
-        result = 52
+        result = 50
     ElseIf (q < 288) Then
-        result = 54
+        result = 52
     ElseIf (q < 432) Then
-        result = 57
+        result = 54
     ElseIf (q < 576) Then
-        result = 59
+        result = 57
     ElseIf (q < 720) Then
-        result = 61
+        result = 59
     ElseIf (q < 864) Then
-        result = 62
+        result = 61
     ElseIf (q < 1152) Then
-        result = 64
+        result = 62
     ElseIf (q < 1440) Then
-        result = 65
+        result = 64
     Else
-        result = 10
+        result = 65
     End If
               
     get_efficiency = result
