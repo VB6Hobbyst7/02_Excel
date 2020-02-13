@@ -1,4 +1,4 @@
-Attribute VB_Name = "MotorHorsePower"
+Attribute VB_Name = "BaseDataSheet_MotorHorsepower"
 Public IP As Long
 
 Sub Range_End_Method()
@@ -340,8 +340,6 @@ Sub insert_basic_entry(title As Variant, simdo As Variant, q As Variant, motor_d
 End Sub
 
 Sub getWhpaData_AllWell()
-   
-    ' 2019/11/16 all well are has a one unique well
    
     Dim nof_sheets As Integer
     Dim nof_unique_tab As Integer

@@ -1,6 +1,9 @@
-Attribute VB_Name = "MakePumpingWell"
+Attribute VB_Name = "BaseDataSheet_MakePumpingWell"
 
 Option Explicit
+
+
+'쉬트를 생성할때에는 전체 관정데이타를 건들지 않고, 우선먼저 쉬트복제를 누르는것이 기본으로 정해져 있다.
 
 Sub CopyOneSheet()
 
@@ -52,11 +55,52 @@ Sub ChangeCellData(ByVal nsheet As Integer, ByVal nselect As Integer)
  
     
     Range("E21").Select
-    Range("E21").Formula = "=Well!" & Cells(nsheet, 9).Address
+    'Range("E21").Formula = "=Well!" & Cells(nsheet, 9).Address
+    Range("E21").Formula = "=Well!" & Cells(nsheet, "I").Address
     
 End Sub
 
 
+
+'각각의 쉬트를 순회하면서, 셀의 참조값을 맟추어준다.
+'
+Sub JojungSheetData()
+
+    Dim n_sheets As Integer
+    Dim i As Integer
+
+    n_sheets = sheets_count()
+    
+    For i = 1 To n_sheets
+    
+        Sheets(CStr(i)).Activate
+        Call ChangeCellData2(i)
+    Next i
+    
+    
+End Sub
+
+Sub ChangeCellData2(ByVal nsheet As Integer)
+
+    Dim nselect As String
+
+    Range("C2, C3, C4, C5, C6, C7, C8, C15, C16, C17, C18, C19, E17, F21").Select
+    Range("F21").Activate
+
+    nsheet = nsheet + 3
+    nselect = Mid(Range("c2").Formula, 8)
+    
+    'Debug.Print Mid(Range("c2").Formula, 8) & ":" & nselect
+
+    Selection.Replace What:=nselect, Replacement:=CStr(nsheet), LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False
+
+
+    Range("E21").Select
+    Range("E21").Formula = "=Well!" & Cells(nsheet, "I").Address
+    
+End Sub
 
 
 

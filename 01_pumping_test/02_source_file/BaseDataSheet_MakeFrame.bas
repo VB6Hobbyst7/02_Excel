@@ -1,4 +1,4 @@
-Attribute VB_Name = "MakeFrame"
+Attribute VB_Name = "BaseDataSheet_MakeFrame"
 Sub make_frame2(ByVal sh As Integer)
         
         
