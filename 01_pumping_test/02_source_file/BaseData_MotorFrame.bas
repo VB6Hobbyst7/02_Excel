@@ -1,4 +1,4 @@
-Attribute VB_Name = "BaseDataSheet_MotorFrame"
+Attribute VB_Name = "BaseData_MotorFrame"
 Sub draw_motor_frame(ByVal nof_sheets As Integer, ByVal po As Integer)
 
     Dim mychar

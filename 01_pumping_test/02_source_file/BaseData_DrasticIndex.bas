@@ -1,4 +1,4 @@
-Attribute VB_Name = "BaseDataSheet_DrasticIndex"
+Attribute VB_Name = "BaseData_DrasticIndex"
 '기본관정데이타 - 드라스틱인덱스
 
 

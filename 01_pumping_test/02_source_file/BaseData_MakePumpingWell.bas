@@ -1,4 +1,4 @@
-Attribute VB_Name = "BaseDataSheet_MakePumpingWell"
+Attribute VB_Name = "BaseData_MakePumpingWell"
 
 Option Explicit
 
@@ -10,6 +10,10 @@ Sub CopyOneSheet()
     Dim n_sheets As Integer
 
     n_sheets = sheets_count()
+    
+    '2020/5/30 관정리스트의 목록삽입해주는 부분 추가
+    InsertOneRow (n_sheets)
+    
     
     If (n_sheets = 1) Then
         Sheets("1").Select
@@ -37,6 +41,21 @@ Sub CopyOneSheet()
         Call ChangeCellData(n_sheets + 1, 2)
     End If
     
+    Sheets("Well").Select
+End Sub
+
+Sub InsertOneRow(ByVal n_sheets As Integer)
+
+    n_sheets = n_sheets + 4
+    Rows(CStr(n_sheets) & ":" & CStr(n_sheets)).Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    
+    Rows(CStr(n_sheets - 1) & ":" & CStr(n_sheets - 1)).Select
+    Selection.Copy
+    Rows(CStr(n_sheets) & ":" & CStr(n_sheets)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+
 End Sub
 
 Sub ChangeCellData(ByVal nsheet As Integer, ByVal nselect As Integer)
@@ -101,6 +120,8 @@ Sub ChangeCellData2(ByVal nsheet As Integer)
     Range("E21").Formula = "=Well!" & Cells(nsheet, "I").Address
     
 End Sub
+
+
 
 
 
