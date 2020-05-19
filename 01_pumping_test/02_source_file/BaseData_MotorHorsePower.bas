@@ -192,7 +192,7 @@ Sub get_tabsize(ByRef nof_sheets As Integer, ByRef nof_unique_tab As Integer)
     
 End Sub
 
-Function get_efficiency(ByVal q As Variant) As Variant
+Function get_efficiency_A(ByVal q As Variant) As Variant
 
     Dim result As Variant
     
@@ -224,7 +224,80 @@ Function get_efficiency(ByVal q As Variant) As Variant
         result = 65
     End If
               
-    get_efficiency = result
+    get_efficiency_A = result
+    
+End Function
+
+Function get_efficiency_B(ByVal q As Variant) As Variant
+
+    Dim result As Variant
+    
+    If (q < 72) Then
+        result = 34
+    ElseIf (q < 86.4) Then
+        result = 36
+    ElseIf (q < 115.2) Then
+        result = 38
+    ElseIf (q < 144) Then
+        result = 41
+    ElseIf (q < 216) Then
+        result = 42
+    ElseIf (q < 288) Then
+        result = 44
+    ElseIf (q < 432) Then
+        result = 46
+    ElseIf (q < 576) Then
+        result = 58
+    ElseIf (q < 720) Then
+        result = 50
+    ElseIf (q < 864) Then
+        result = 52
+    ElseIf (q < 1152) Then
+        result = 53
+    ElseIf (q < 1440) Then
+        result = 54
+    Else
+        result = 55
+    End If
+              
+    get_efficiency_B = result
+    
+End Function
+
+
+Function get_efficiency_dongho(ByVal q As Variant) As Variant
+
+    Dim result As Variant
+    
+    If (q < 72) Then
+        result = 38
+    ElseIf (q < 86.4) Then
+        result = 40.25
+    ElseIf (q < 115.2) Then
+        result = 43
+    ElseIf (q < 144) Then
+        result = 45.25
+    ElseIf (q < 216) Then
+        result = 47
+    ElseIf (q < 288) Then
+        result = 49
+    ElseIf (q < 432) Then
+        result = 51.25
+    ElseIf (q < 576) Then
+        result = 53.5
+    ElseIf (q < 720) Then
+        result = 55.5
+    ElseIf (q < 864) Then
+        result = 57
+    ElseIf (q < 1152) Then
+        result = 58.25
+    ElseIf (q < 1440) Then
+        result = 59.5
+    Else
+        result = 60
+    End If
+              
+    get_efficiency_dongho = result
     
 End Function
 
@@ -302,7 +375,7 @@ Sub getMotorPower()
         simdo(i) = Range("c7").value
         pump_q(i) = Range("c16").value
         motor_depth(i) = Range("c18").value
-        efficiency(i) = get_efficiency(pump_q(i))
+        efficiency(i) = get_efficiency_dongho(pump_q(i))
         hp(i) = Range("c17").value
     
     Next i
@@ -340,8 +413,6 @@ Sub insert_basic_entry(title As Variant, simdo As Variant, q As Variant, motor_d
 End Sub
 
 Sub getWhpaData_AllWell()
-   
-    ' 2019/11/16 all well are has a one unique well
    
     Dim nof_sheets As Integer
     Dim nof_unique_tab As Integer
@@ -394,5 +465,7 @@ Sub getWhpaData_EachWell()
     Application.ScreenUpdating = True
     
 End Sub
+
+
 
 
