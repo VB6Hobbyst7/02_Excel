@@ -1,4 +1,32 @@
 Attribute VB_Name = "BaseData_MakeFrame"
+
+Public Sub MalgunGothic()
+    ActiveWindow.SmallScroll Down:=78
+    Cells.Select
+    Range("A200").Activate
+    With Selection.Font
+        .Name = "¸¼Àº °íµñ"
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    
+    Range("C186").Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    
+End Sub
+
+
 Public Sub make_frame2(ByVal sh As Integer)
         
         
@@ -325,6 +353,11 @@ Sub initialize_wellstyle()
     Range("d23").Select
     
 End Sub
+
+
+
+
+
 
 
 
