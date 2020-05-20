@@ -4,7 +4,7 @@ Attribute VB_Name = "BaseData_DrasticIndex"
 
 Dim Dr, Rr As Single
 
-Sub ShiftNewYear()
+Private Sub ShiftNewYear()
 
    
     Range("B7:N35").Select
@@ -34,7 +34,7 @@ End Sub
 
 
 ' 1, 지하수위에 대한 등급의 계산
-Function Rating_UnderGroundWater(ByVal water_level As Single) As Integer
+Private Function Rating_UnderGroundWater(ByVal water_level As Single) As Integer
 
     Dim result As Integer
 
@@ -61,7 +61,7 @@ Function Rating_UnderGroundWater(ByVal water_level As Single) As Integer
 End Function
 
 '2, 강수의 지하함양량
-Function Rating_NetRecharge(ByVal value As Single) As Integer
+Private Function Rating_NetRecharge(ByVal value As Single) As Integer
 
     Dim result As Integer
     
@@ -83,7 +83,7 @@ End Function
 
 '3, 대수층
 
-Function Rating_AqMedia(ByVal value As String) As Integer
+Private Function Rating_AqMedia(ByVal value As String) As Integer
         
     
     If StrComp(value, "Massive Shale") = 0 Then
@@ -143,7 +143,7 @@ End Function
 
 '4 토양특성ㅇ에 대한 등급
 
-Function Rating_SoilMedia(ByVal value As String) As Integer
+Private Function Rating_SoilMedia(ByVal value As String) As Integer
 
 
     If StrComp(value, "Thin or Absecnt") = 0 Then
@@ -206,7 +206,7 @@ Function Rating_SoilMedia(ByVal value As String) As Integer
 End Function
 
 ' 5, 지형구배
-Function Rating_Topo(ByVal value As Single) As Integer
+Private Function Rating_Topo(ByVal value As Single) As Integer
     
     Dim result As Integer
     
@@ -229,7 +229,7 @@ End Function
 
 '6 비포화대의 영향에 대한 등급 Ir
 
-Function Rating_Vadose(ByVal value As String) As Integer
+Private Function Rating_Vadose(ByVal value As String) As Integer
 
     If StrComp(value, "Confining Layer") = 0 Then
         Rating_Vadose = 1
@@ -278,7 +278,7 @@ Function Rating_Vadose(ByVal value As String) As Integer
 End Function
 
 ' 7, 대수층의 수리전도도에 대한 등급 : Cr
-Function Rating_EC(ByVal value As Double) As Integer
+Private Function Rating_EC(ByVal value As Double) As Integer
 
     Dim result As Integer
     
@@ -301,7 +301,7 @@ Function Rating_EC(ByVal value As Double) As Integer
 
 End Function
 
-Sub find_average()
+Public Sub find_average()
     ' 2019/10/18 일 작성함
     ' get 투수량계수, 대수층, 유향, 동수경사의 평균을 구해야한다.
 
@@ -346,7 +346,7 @@ Sub find_average()
     
 End Sub
 
-Sub find_average2(ByVal sheet As Integer, ByVal nof_well As Integer)
+Public Sub find_average2(ByVal sheet As Integer, ByVal nof_well As Integer)
     ' 2019/10/18 일 작성함
     ' get 투수량계수, 대수층, 유향, 동수경사의 평균을 구해야한다.
 
@@ -393,7 +393,7 @@ Sub find_average2(ByVal sheet As Integer, ByVal nof_well As Integer)
     
 End Sub
 
-Function get_direction() As Long
+Private Function get_direction() As Long
     ' get direction is cell is bold
     ' 셀이 볼드값이면 선택을 한다.  방향이 두개중에서 하나를 선택하게 된다.
     ' 2019/10/18일
@@ -411,10 +411,13 @@ Function get_direction() As Long
 
 End Function
 
-Sub main()
+
+Sub main_drasticindex()
     Dim water_level, net_recharge, topo, EC As Single
     
     Dim AQ, Soil, Vadose As String
+    
+    Dim drastic_string As String
     
     Dim n_sheets As Integer
     Dim i As Integer
@@ -468,7 +471,58 @@ Sub main()
 
 End Sub
 
-Function ConvertToLongInteger(ByVal stValue As String) As Long
+
+Function check_drasticindex() As String
+
+    Dim value As Integer
+    Dim result As String
+
+    value = Range("k29").value
+    
+     If (value < 100) Then
+        result = "매우 낮음"
+    ElseIf (value < 120) Then
+        result = "낮음"
+    ElseIf (value < 140) Then
+        result = "비교적 낮음"
+    ElseIf (value < 160) Then
+        result = "중간 정도"
+    ElseIf (value < 180) Then
+        result = "높음"
+    Else
+        result = "매우 높음"
+    End If
+              
+    check_drasticindex = result
+
+End Function
+
+Public Sub print_drastic_string()
+    Dim n_sheets As Integer
+    Dim i As Integer
+    
+    n_sheets = sheets_count()
+      
+    For i = 1 To n_sheets
+         Worksheets(CStr(i)).Activate
+         Range("k26").value = check_drasticindex()
+    Next i
+
+End Sub
+
+Public Sub make_wellstyle()
+    Dim n_sheets As Integer
+    Dim i As Integer
+    
+    n_sheets = sheets_count()
+      
+    For i = 1 To n_sheets
+         Worksheets(CStr(i)).Activate
+         Call initialize_wellstyle
+    Next i
+End Sub
+
+Private Function ConvertToLongInteger(ByVal stValue As String) As Long
     On Error GoTo ConversionFailureHandler
     ConvertToLongInteger = CLng(stValue)         'TRY to convert to an Integer value
     Exit Function                                'If we reach this point, then we succeeded so exit
@@ -489,7 +543,7 @@ ConversionFailureHandler:
 
 End Function
 
-Function sheets_count() As Long
+Public Function sheets_count() As Long
 
     Dim i, nSheetsCount, nWell  As Integer
     Dim strSheetsName(50) As String
@@ -511,5 +565,7 @@ Function sheets_count() As Long
     sheets_count = nWell
 
 End Function
+
+
 
 

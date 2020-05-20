@@ -5,7 +5,7 @@ Option Explicit
 
 '쉬트를 생성할때에는 전체 관정데이타를 건들지 않고, 우선먼저 쉬트복제를 누르는것이 기본으로 정해져 있다.
 
-Sub CopyOneSheet()
+Public Sub CopyOneSheet()
 
     Dim n_sheets As Integer
 
@@ -44,7 +44,7 @@ Sub CopyOneSheet()
     Sheets("Well").Select
 End Sub
 
-Sub InsertOneRow(ByVal n_sheets As Integer)
+Private Sub InsertOneRow(ByVal n_sheets As Integer)
 
     n_sheets = n_sheets + 4
     Rows(CStr(n_sheets) & ":" & CStr(n_sheets)).Select
@@ -58,7 +58,7 @@ Sub InsertOneRow(ByVal n_sheets As Integer)
 
 End Sub
 
-Sub ChangeCellData(ByVal nsheet As Integer, ByVal nselect As Integer)
+Private Sub ChangeCellData(ByVal nsheet As Integer, ByVal nselect As Integer)
 '
 ' change sheet data direct to well sheet data value
 '
@@ -83,7 +83,7 @@ End Sub
 
 '각각의 쉬트를 순회하면서, 셀의 참조값을 맟추어준다.
 '
-Sub JojungSheetData()
+Public Sub JojungSheetData()
 
     Dim n_sheets As Integer
     Dim i As Integer
@@ -99,7 +99,7 @@ Sub JojungSheetData()
     
 End Sub
 
-Sub ChangeCellData2(ByVal nsheet As Integer)
+Private Sub ChangeCellData2(ByVal nsheet As Integer)
 
     Dim nselect As String
 
@@ -120,6 +120,10 @@ Sub ChangeCellData2(ByVal nsheet As Integer)
     Range("E21").Formula = "=Well!" & Cells(nsheet, "I").Address
     
 End Sub
+
+
+
+
 
 
 

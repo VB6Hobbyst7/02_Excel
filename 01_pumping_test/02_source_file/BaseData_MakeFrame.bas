@@ -1,5 +1,5 @@
 Attribute VB_Name = "BaseData_MakeFrame"
-Sub make_frame2(ByVal sh As Integer)
+Public Sub make_frame2(ByVal sh As Integer)
         
         
     Worksheets(CStr(sh)).Activate
@@ -119,7 +119,7 @@ Sub make_frame2(ByVal sh As Integer)
     Range("k3").Select
 End Sub
 
-Sub make_frame()
+Public Sub make_frame()
     
     
     Range("i3").value = "Åõ¼ö·®°è¼ö"
@@ -235,4 +235,96 @@ Sub make_frame()
     End With
    
 End Sub
+
+Sub initialize_wellstyle()
+
+    Range("C3:C22").Select
+    Selection.NumberFormat = "General"
+    With Selection
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    
+    With Selection.Font
+        .Name = "¸¼Àº °íµñ"
+        .Size = 10
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+
+    Range("E19:G19").Select
+    With Selection.Font
+        .Name = "¸¼Àº °íµñ"
+        .Size = 12
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    
+    Range("E21:G21").Select
+    With Selection.Font
+        .Name = "¸¼Àº °íµñ"
+        .Size = 12
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    
+    Range("B25:K29").Select
+    With Selection.Font
+        .Name = "¸¼Àº °íµñ"
+        .Size = 11
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    
+    Range("d23").Select
+    
+End Sub
+
+
 

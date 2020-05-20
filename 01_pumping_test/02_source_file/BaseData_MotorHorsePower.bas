@@ -1,7 +1,7 @@
 Attribute VB_Name = "BaseData_MotorHorsePower"
 Public IP As Long
 
-Sub Range_End_Method()
+Private Sub Range_End_Method()
     'Finds the last non-blank cell in a single row or column
 
     Dim lRow As Long
@@ -18,7 +18,7 @@ Sub Range_End_Method()
   
 End Sub
 
-Function lastRow() As Long
+Public Function lastRow() As Long
 
     Dim lRow As Long
     lRow = Cells(Rows.count, 1).End(xlUp).Row
@@ -68,7 +68,7 @@ Public Function GetLength(a As Variant) As Integer
     End If
 End Function
 
-Function getUnique(ByRef array_tabcolor As Variant) As Variant
+Private Function getUnique(ByRef array_tabcolor As Variant) As Variant
   
     Dim array_size As Variant
     Dim new_array As Variant
@@ -79,7 +79,7 @@ Function getUnique(ByRef array_tabcolor As Variant) As Variant
     
 End Function
 
-Function nColorsInArray(ByRef array_tabcolor() As Variant, ByVal check As Variant) As Integer
+Private Function nColorsInArray(ByRef array_tabcolor() As Variant, ByVal check As Variant) As Integer
 
     '관정에 지정하는 색갈은 모두 달라야 한다.
 
@@ -99,7 +99,7 @@ Function nColorsInArray(ByRef array_tabcolor() As Variant, ByVal check As Varian
     
 End Function
 
-Function getans_tabcolors() As Variant
+Private Function getans_tabcolors() As Variant
 
     Dim n_sheets, i, j, limit As Integer
     Dim arr_tabcolors(), new_tabcolors(), ans_tabcolors() As Variant
@@ -132,7 +132,7 @@ Function getans_tabcolors() As Variant
     
 End Function
 
-Function getkey_tabcolors() As Object
+Private Function getkey_tabcolors() As Object
 
     Dim n_sheets, i, j, limit As Integer
     Dim arr_tabcolors(), new_tabcolors() As Variant
@@ -168,7 +168,7 @@ Function getkey_tabcolors() As Object
    
 End Function
 
-Sub get_tabsize(ByRef nof_sheets As Integer, ByRef nof_unique_tab As Integer)
+Private Sub get_tabsize(ByRef nof_sheets As Integer, ByRef nof_unique_tab As Integer)
 
     Dim n_sheets, i, j, limit As Integer
     Dim arr_tabcolors(), new_tabcolors() As Variant
@@ -192,7 +192,7 @@ Sub get_tabsize(ByRef nof_sheets As Integer, ByRef nof_unique_tab As Integer)
     
 End Sub
 
-Function get_efficiency_A(ByVal q As Variant) As Variant
+Private Function get_efficiency_A(ByVal q As Variant) As Variant
 
     Dim result As Variant
     
@@ -228,7 +228,7 @@ Function get_efficiency_A(ByVal q As Variant) As Variant
     
 End Function
 
-Function get_efficiency_B(ByVal q As Variant) As Variant
+Private Function get_efficiency_B(ByVal q As Variant) As Variant
 
     Dim result As Variant
     
@@ -264,8 +264,7 @@ Function get_efficiency_B(ByVal q As Variant) As Variant
     
 End Function
 
-
-Function get_efficiency_dongho(ByVal q As Variant) As Variant
+Private Function get_efficiency_dongho(ByVal q As Variant) As Variant
 
     Dim result As Variant
     
@@ -301,7 +300,7 @@ Function get_efficiency_dongho(ByVal q As Variant) As Variant
     
 End Function
 
-Sub insert_cell_function(ByVal n As Integer, ByVal position As Integer)
+Private Sub insert_cell_function(ByVal n As Integer, ByVal position As Integer)
 
     Dim mychar
     Dim height, eq, round_hp, theory_hp As String
@@ -334,7 +333,7 @@ Sub insert_cell_function(ByVal n As Integer, ByVal position As Integer)
     
 End Sub
 
-Sub getMotorPower()
+Public Sub getMotorPower()
     
     Dim r_ans() As Variant
     Dim rc As Collection                         'return collection
@@ -395,7 +394,7 @@ Sub getMotorPower()
     
 End Sub
 
-Sub insert_basic_entry(title As Variant, simdo As Variant, q As Variant, motor_depth As Variant, e As Variant, hp As Variant, _
+Private Sub insert_basic_entry(title As Variant, simdo As Variant, q As Variant, motor_depth As Variant, e As Variant, hp As Variant, _
                        ByVal i As Integer, ByVal po As Variant)
 
    
@@ -465,6 +464,10 @@ Sub getWhpaData_EachWell()
     Application.ScreenUpdating = True
     
 End Sub
+
+
+
+
 
 
 

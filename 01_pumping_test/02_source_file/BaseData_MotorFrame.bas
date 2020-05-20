@@ -1,5 +1,5 @@
 Attribute VB_Name = "BaseData_MotorFrame"
-Sub draw_motor_frame(ByVal nof_sheets As Integer, ByVal po As Integer)
+Public Sub draw_motor_frame(ByVal nof_sheets As Integer, ByVal po As Integer)
 
     Dim mychar
    
@@ -53,7 +53,7 @@ Sub draw_motor_frame(ByVal nof_sheets As Integer, ByVal po As Integer)
     
 End Sub
 
-Sub alignTitle(ByVal nof_sheets As Integer, ByVal po As Integer)
+Private Sub alignTitle(ByVal nof_sheets As Integer, ByVal po As Integer)
 
     Dim mychar
     mychar = Chr(65 + nof_sheets)
@@ -110,7 +110,7 @@ Sub alignTitle(ByVal nof_sheets As Integer, ByVal po As Integer)
 
 End Sub
 
-Sub decorationPumpHP(ByVal nof_sheets As Integer, ByVal po As Integer)
+Private Sub decorationPumpHP(ByVal nof_sheets As Integer, ByVal po As Integer)
 
     Dim mychar
 
@@ -204,7 +204,7 @@ Sub decorationPumpHP(ByVal nof_sheets As Integer, ByVal po As Integer)
     
 End Sub
 
-Sub decorationInerLine(ByVal nof_sheets As Integer, ByVal po As Integer)
+Private Sub decorationInerLine(ByVal nof_sheets As Integer, ByVal po As Integer)
 
     Dim mychar
 
@@ -393,7 +393,7 @@ Sub decorationInerLine(ByVal nof_sheets As Integer, ByVal po As Integer)
   
 End Sub
 
-Sub draw_border()
+Private Sub draw_border()
 
     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
     Selection.Borders(xlDiagonalUp).LineStyle = xlNone
@@ -425,4 +425,5 @@ Sub draw_border()
     Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
     
 End Sub
+
 
