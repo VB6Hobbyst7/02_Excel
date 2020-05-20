@@ -4,6 +4,22 @@ Attribute VB_Name = "BaseData_DrasticIndex"
 
 Dim Dr, Rr As Single
 
+
+Private Sub TurnOffStuff()
+
+    Application.Calculation = xlCalculationManual
+    Application.ScreenUpdating = False
+    
+
+End Sub
+
+Private Sub TurnOnStuff()
+
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+    
+End Sub
+
 Private Sub ShiftNewYear()
 
    
@@ -515,11 +531,16 @@ Public Sub make_wellstyle()
     Dim i As Integer
     
     n_sheets = sheets_count()
-      
+    
+    Call TurnOffStuff
+    
     For i = 1 To n_sheets
          Worksheets(CStr(i)).Activate
          Call initialize_wellstyle
     Next i
+    
+    Call TurnOnStuff
+    
 End Sub
 
 Private Function ConvertToLongInteger(ByVal stValue As String) As Long
@@ -565,6 +586,12 @@ Public Function sheets_count() As Long
     sheets_count = nWell
 
 End Function
+
+
+
+
+
+
 
 
 
