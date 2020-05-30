@@ -495,15 +495,15 @@ Function check_drasticindex() As String
 
     value = Range("k29").value
     
-     If (value < 100) Then
+     If (value <= 100) Then
         result = "매우 낮음"
-    ElseIf (value < 120) Then
+    ElseIf (value <= 120) Then
         result = "낮음"
-    ElseIf (value < 140) Then
+    ElseIf (value <= 140) Then
         result = "비교적 낮음"
-    ElseIf (value < 160) Then
+    ElseIf (value <= 160) Then
         result = "중간 정도"
-    ElseIf (value < 180) Then
+    ElseIf (value <= 180) Then
         result = "높음"
     Else
         result = "매우 높음"
@@ -586,8 +586,6 @@ Public Function sheets_count() As Long
     sheets_count = nWell
 
 End Function
-
-
 
 
 
