@@ -1,149 +1,118 @@
-Attribute VB_Name = "mod_CopyLongTerm"
-Sub make_step_document()
-    '
-    ' 단계양수시험 복사
-    ' select last sheet -- Sheets(Sheets.Count).Select
+Attribute VB_Name = "mod_ChartModify"
+Option Explicit
 
-    '
-    Application.ScreenUpdating = False
+' 2019/11/27 --- adjustment of chart's graph position and x, y scale
+
+Sub adjustChartGraph()
+
+    Dim Q0, Q1, E0, E1, SwQ0, SwQ1, IQ As Double
+
+    ' IQ -- Initial Q
+    ' 가채수량이다. 양수량
+
     
-    shStepTest.Select
-    shStepTest.Copy Before:=Sheets(Sheets.Count)
-    Application.GoTo Reference:="Print_Area"
-    Selection.Copy
-    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
-                           :=False, Transpose:=False
-    Application.CutCopyMode = False
-    Columns("J:AU").Select
-    Selection.Delete Shift:=xlToLeft
-    ActiveWindow.SmallScroll Down:=-48
-    Application.GoTo Reference:="Print_Area"
-    With Selection.Font
-        .name = "맑은 고딕"
-        .Strikethrough = False
-        .Superscript = False
-        .Subscript = False
-        .OutlineFont = False
-        .Shadow = False
-        .Underline = xlUnderlineStyleNone
-        .TintAndShade = 0
-        .ThemeFont = xlThemeFontNone
-    End With
+    Q0 = Range("D3").Value
+    Q1 = Range("D7").Value
     
-    Range("H2").Select
+    E0 = Range("F35").Value
+    E1 = Range("F32").Value
     
-    ActiveSheet.Shapes.Range(Array("CommandButton1")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton2")).Select
-    Selection.Delete
+    SwQ0 = Range("F3").Value
+    SwQ1 = Range("F7").Value
     
-    Application.ScreenUpdating = True
+    IQ = Range("M51").Value
     
+    Call setAxisScale("Chart 5", Q0, Q1, SwQ0, SwQ1)
+    Call setAxisScale("Chart 7", Q0, Q1, SwQ0, SwQ1)
+    
+    Call setAxisScale_Efficiency("Chart 8", Q0, Q1, E0, E1)
+
 End Sub
 
+Function determinX(ByVal x0 As Double, ByVal x1 As Double) As Double
 
+    determinX = (x1 - x0) / 3
+    
+End Function
 
-Sub test_sheet_bynumber()
+Function determinY(ByVal y0 As Double, ByVal y1 As Double) As Double
+    'determiney 수정 - 2020-6-21
+    'y0 = Round(y0 / 10, 0) * 10
+    'y1 = Round(y1 / 10, 0) * 10
     
-    Dim i, nSheetsCount, nWell  As Integer
-    Dim strSheetsName(50) As String
+    determinY = (y1 - y0) / 3
     
-    nSheetsCount = ThisWorkbook.Sheets.Count
-    nWell = 0
-    
-    For i = 1 To nSheetsCount
-        strSheetsName(i) = ThisWorkbook.Sheets(i).name
-        Sheets(i).Activate
-        MsgBox (strSheetsName(i) & " sheets : " & i)
-    Next i
-    
-End Sub
+End Function
 
+Sub setAxisScale_Efficiency(strName As String, ByVal x0 As Double, ByVal x1 As Double, ByVal y0 As Double, ByVal y1 As Double)
 
-Sub make_long_document()
-    '
-    ' 장기양수시험복사 매크로
-    '
+    Dim dresx, dresy As Double
+    Dim xMax, xMin, yMax, yMin As Double
 
-    Application.ScreenUpdating = False
-
-    shLongTermTest.Select
-    shLongTermTest.Copy Before:=Sheets(Sheets.Count)
     
-    Application.GoTo Reference:="Print_Area"
-    Selection.Copy
-    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
-                           :=False, Transpose:=False
-    Application.CutCopyMode = False
-    
-    Columns("J:AP").Select
-    Selection.Delete Shift:=xlToLeft
-    ActiveWindow.SmallScroll Down:=96
-    
-    Rows("102:264").Select
-    Selection.Delete Shift:=xlUp
-    ActiveWindow.SmallScroll Down:=-102
-    
-    Range("H5").Select
-    Application.GoTo Reference:="Print_Area"
-    With Selection.Font
-        .name = "맑은 고딕"
-        .Strikethrough = False
-        .Superscript = False
-        .Subscript = False
-        .OutlineFont = False
-        .Shadow = False
-        .Underline = xlUnderlineStyleNone
-        .TintAndShade = 0
-        .ThemeFont = xlThemeFontNone
-    End With
-    
-    
-    Application.GoTo Reference:="Print_Area"
-    With Selection.Interior
-        .Pattern = xlNone
-        .TintAndShade = 0
-        .PatternTintAndShade = 0
-    End With
-    
-    Range("J6").Select
-    
-    ActiveSheet.Shapes.Range(Array("Frame1")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton1")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton2")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton3")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton4")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton5")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton6")).Select
-    Selection.Delete
-    ActiveSheet.Shapes.Range(Array("CommandButton7")).Select
-    Selection.Delete
-    
-    
-    Application.ScreenUpdating = True
-    
-    Call modify_cell_value
-    
-End Sub
-
-'2019/11/24
-
-Sub modify_cell_value()
-
-    Dim i As Integer, j As Integer
-    
-    For i = 10 To 101
-            
-        Cells(i, "F").Value = Round(Cells(i, "F").Value, 2)
-        Cells(i, "G").Value = Round(Cells(i, "G").Value, 2)
+    dresx = determinX(x0, x1)
         
-    Next i
+    xMin = (x0 - dresx)
+    xMax = (x1 + dresx)
+    
+    yMin = WorksheetFunction.RoundDown(y0, -1) - 20
+    yMax = WorksheetFunction.RoundUp(y1, -1) + 10
+    
+    ActiveSheet.ChartObjects(strName).Activate
+    ActiveChart.Axes(xlCategory).Select
+    ActiveChart.Axes(xlCategory).MinimumScale = xMin
+    ActiveChart.Axes(xlCategory).MaximumScale = xMax
+    
+    ActiveChart.Axes(xlValue).Select
+    ActiveChart.Axes(xlValue).MinimumScale = yMin
+    ActiveChart.Axes(xlValue).MaximumScale = yMax
+    
+    Call setAxisUnit(strName, xMin, xMax, yMin, yMax)
+
+End Sub
+
+Sub setAxisScale(strName As String, ByVal x0 As Double, ByVal x1 As Double, ByVal y0 As Double, ByVal y1 As Double)
+
+    Dim dresx, dresy As Double
+    Dim xMax, xMin, yMax, yMin As Double
+
+    
+    dresx = determinX(x0, x1)
+    dresy = determinY(y0 * 1000, y1 * 1000)
+
+    xMin = (x0 - dresx)
+    xMax = (x1 + dresx)
+    
+    yMin = (y0 * 1000 - dresy) / 1000
+    yMax = (y1 * 1000 + dresy) / 1000
+
+    ActiveSheet.ChartObjects(strName).Activate
+    ActiveChart.Axes(xlCategory).Select
+    ActiveChart.Axes(xlCategory).MinimumScale = xMin
+    ActiveChart.Axes(xlCategory).MaximumScale = xMax
+    
+    ActiveChart.Axes(xlValue).Select
+    ActiveChart.Axes(xlValue).MinimumScale = yMin
+    ActiveChart.Axes(xlValue).MaximumScale = yMax
+    
+    Call setAxisUnit(strName, xMin, xMax, yMin, yMax)
+
+End Sub
+
+Sub setAxisUnit(strName As String, ByVal x0 As Double, ByVal x1 As Double, ByVal y0 As Double, ByVal y1 As Double)
+
+    Dim dresx, dresy As Double
+    Dim xMax, xMin, yMax, yMin As Double
+
+
+    ActiveSheet.ChartObjects(strName).Activate
+    ActiveChart.Axes(xlCategory).Select
+    ActiveChart.Axes(xlCategory).MajorUnit = (x1 - x0) / 10
+    'ActiveChart.Axes(xlCategory).MinorUnit = 6
+    
+    ActiveChart.Axes(xlValue).Select
+    ActiveChart.Axes(xlValue).MajorUnit = (y1 - y0) / 4
+    'ActiveChart.Axes(xlValue).MinorUnit = 0.03
     
 
 End Sub
