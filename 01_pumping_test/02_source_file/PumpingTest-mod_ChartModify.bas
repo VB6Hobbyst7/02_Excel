@@ -36,11 +36,11 @@ Function determinX(ByVal x0 As Double, ByVal x1 As Double) As Double
 End Function
 
 Function determinY(ByVal y0 As Double, ByVal y1 As Double) As Double
-
-    y0 = Round(y0 / 10, 0) * 10
-    y1 = Round(y1 / 10, 0) * 10
+    'determiney ¼öÁ¤ - 2020-6-21
+    'y0 = Round(y0 / 10, 0) * 10
+    'y1 = Round(y1 / 10, 0) * 10
     
-    determinY = (y1 - y0) / 2
+    determinY = (y1 - y0) / 3
     
 End Function
 
@@ -116,4 +116,5 @@ Sub setAxisUnit(strName As String, ByVal x0 As Double, ByVal x1 As Double, ByVal
     
 
 End Sub
+
 
