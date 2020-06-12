@@ -165,37 +165,37 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
     Dim mypos As Integer
 
 
-    mypos = InStr(1, strPurpose, "일")
+    mypos = InStr(1, strPurpose, "일") '일반용
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_ilban, 1) + qhp * SS(ssv_ilban, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "가")
+    mypos = InStr(1, strPurpose, "가") '가정용
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_gajung, 1) + SS_CITY * SS(ssv_gajung, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "기")
+    mypos = InStr(1, strPurpose, "기") '기타
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_gajung, 1) + SS_CITY * SS(ssv_gajung, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "농")
+    mypos = InStr(1, strPurpose, "농") '농생활겸용
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_gajung, 1) + SS_CITY * SS(ssv_gajung, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "청")
+    mypos = InStr(1, strPurpose, "청") '청소용
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_gajung, 1) + SS_CITY * SS(ssv_gajung, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "상")
+    mypos = InStr(1, strPurpose, "상") '간이상수도
     If (mypos <> 0) Then
         ss_water = Round(SS(ssv_town, 1) + npopulation * SS(ssv_town, 2), 2)
         Exit Function
@@ -217,25 +217,32 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
     Dim mypos As Integer
 
 
-    mypos = InStr(1, strPurpose, "전")
+    mypos = InStr(1, strPurpose, "전") '전작용
     If (mypos <> 0) Then
         aa_water = Round(AA(aav_jeon, 1) + qhp * AA(aav_jeon, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "답")
+    mypos = InStr(1, strPurpose, "답") '답작용
     If (mypos <> 0) Then
         aa_water = Round(AA(aav_dap, 1) + qhp * AA(aav_dap, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "원")
+    mypos = InStr(1, strPurpose, "원") '원예용
     If (mypos <> 0) Then
         aa_water = Round(AA(aav_wonye, 1) + qhp * AA(aav_wonye, 2), 2)
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "축")
+    '농생활겸용
+    mypos = InStr(1, strPurpose, "농")
+    If (mypos <> 0) Then
+        aa_water = Round(AA(aav_jeon, 1) + qhp * AA(aav_jeon, 2), 2)
+        Exit Function
+    End If
+    
+    mypos = InStr(1, strPurpose, "축") '축산업
     If (mypos <> 0) Then
         aa_water = Round(AA(aav_cow, 1) + nhead * AA(aav_cow, 2), 2)
         Exit Function
@@ -244,6 +251,7 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
    aa_water = 900
       
 End Function
+
 
 
 
