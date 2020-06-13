@@ -242,6 +242,13 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
         Exit Function
     End If
     
+    '양어장용
+    mypos = InStr(1, strPurpose, "양")
+    If (mypos <> 0) Then
+        aa_water = Round(AA(avDAPJAK, 1) + qhp * AA(avDAPJAK, 2), 2)
+        Exit Function
+    End If
+    
     mypos = InStr(1, strPurpose, "축") '축산업
     If (mypos <> 0) Then
         aa_water = Round(AA(avCOW, 1) + nhead * AA(avCOW, 2), 2)
