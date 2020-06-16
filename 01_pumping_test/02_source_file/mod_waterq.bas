@@ -152,8 +152,8 @@ End Sub
 
 Sub initialize()
         
-       Call init_nonsan
-       'Call init_daejeon
+       'Call init_nonsan
+       Call init_daejeon
        'Call init_boryoung
        
 End Sub
@@ -192,6 +192,12 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
     mypos = InStr(1, strPurpose, "청") '청소용
     If (mypos <> 0) Then
         ss_water = Round(SS(svGAJUNG, 1) + SS_CITY * SS(svGAJUNG, 2), 2)
+        Exit Function
+    End If
+    
+    mypos = InStr(1, strPurpose, "학") '학교용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svSCHOOL, 1) + 3 * npopulation * SS(svSCHOOL, 2), 2)
         Exit Function
     End If
     
@@ -258,6 +264,7 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
    aa_water = 900
       
 End Function
+
 
 
 
