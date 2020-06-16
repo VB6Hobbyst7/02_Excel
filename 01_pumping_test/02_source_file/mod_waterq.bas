@@ -207,6 +207,17 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
         Exit Function
     End If
     
+    mypos = InStr(1, strPurpose, "공") '공동주택용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svGONGDONG, 1) + npopulation * SS(svGONGDONG, 2), 2)
+        Exit Function
+    End If
+    
+    mypos = InStr(1, strPurpose, "마") '마을상수도용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svMAEUL, 1) + npopulation * SS(svMAEUL, 2), 2)
+        Exit Function
+    End If
     
    ss_water = 900
       
