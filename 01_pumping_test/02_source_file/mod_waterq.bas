@@ -67,6 +67,49 @@ Sub init_nonsan()
     
 End Sub
 
+
+'충청남도 연기군
+Sub init_sejong()
+
+   
+    SS(svGAJUNG, 1) = 0.173
+    SS(svGAJUNG, 2) = 0.21
+    SS_CITY = 2.75
+
+    SS(svILBAN, 1) = 3.521
+    SS(svILBAN, 2) = 0.011
+    
+    SS(svSCHOOL, 1) = 11.687
+    SS(svSCHOOL, 2) = 0.007
+    
+    SS(svGONGDONG, 1) = 0.265
+    SS(svGONGDONG, 2) = 0.181
+    
+    SS(svMAEUL, 1) = 7.287
+    SS(svMAEUL, 2) = 0.001
+    
+'----------------------------------------
+
+    AA(avJEONJAK, 1) = 5.66
+    AA(avJEONJAK, 2) = 0.014
+    
+    AA(avDAPJAK, 1) = 1.98
+    AA(avDAPJAK, 2) = 0.044
+    
+    AA(avWONYE, 1) = 2.789
+    AA(avWONYE, 2) = 0.011
+    
+    AA(avCOW, 1) = 3.48
+    AA(avCOW, 2) = 0.009
+    
+    AA(avPIG, 1) = 4.719
+    AA(avPIG, 2) = 0.001
+    
+    AA(avCHICKEN, 1) = 5.492
+    AA(avCHICKEN, 2) = 0.041
+
+End Sub
+
 Sub init_daejeon()
 
    
@@ -153,8 +196,9 @@ End Sub
 Sub initialize()
         
        'Call init_nonsan
-       Call init_daejeon
+       'Call init_daejeon
        'Call init_boryoung
+       Call init_sejong
        
 End Sub
 
@@ -207,17 +251,6 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
         Exit Function
     End If
     
-    mypos = InStr(1, strPurpose, "공") '공동주택용
-    If (mypos <> 0) Then
-        ss_water = Round(SS(svGONGDONG, 1) + npopulation * SS(svGONGDONG, 2), 2)
-        Exit Function
-    End If
-    
-    mypos = InStr(1, strPurpose, "마") '마을상수도용
-    If (mypos <> 0) Then
-        ss_water = Round(SS(svMAEUL, 1) + npopulation * SS(svMAEUL, 2), 2)
-        Exit Function
-    End If
     
    ss_water = 900
       
