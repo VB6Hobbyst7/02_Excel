@@ -202,7 +202,19 @@ Sub initialize()
        
 End Sub
 
+Function instr2(ByVal strPurpose, ByVal sstr As String) As Boolean
 
+    Dim mypos As Integer
+    
+    mypos = InStr(1, strPurpose, sstr)
+    If (mypos <> 0) Then
+        instr2 = True
+        Exit Function
+    End If
+    
+    instr2 = False
+
+End Function
 
 Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByVal npopulation As Integer = 60) As Double
 
@@ -256,6 +268,43 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
       
 End Function
 
+Function ss_water1(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByVal npopulation As Integer = 60) As Double
+
+    Dim mypos As Integer
+
+
+    If (instr2(strPurpose, "일")) Then '일반용
+        ss_water1 = Round(SS(svILBAN, 1) + qhp * SS(svILBAN, 2), 2)
+        Exit Function
+    End If
+    
+    
+    If (instr2(strPurpose, "가") Or instr2(strPurpose, "기") Or instr2(strPurpose, "농") Or instr2(strPurpose, "청")) Then  '가정용
+        ss_water1 = Round(SS(svGAJUNG, 1) + SS_CITY * SS(svGAJUNG, 2), 2)
+        Exit Function
+    End If
+        
+    
+    If (instr2(strPurpose, "학")) Then '학교용
+        ss_water1 = Round(SS(svSCHOOL, 1) + 3 * npopulation * SS(svSCHOOL, 2), 2)
+        Exit Function
+    End If
+    
+    If (instr2(strPurpose, "상") Or instr2(strPurpose, "마")) Then  '학교용
+        ss_water1 = Round(SS(svMAEUL, 1) + npopulation * SS(svMAEUL, 2), 2)
+        Exit Function
+    End If
+    
+    If (instr2(strPurpose, "공")) Then '공동주택용
+        ss_water1 = Round(SS(svGONGDONG, 1) + npopulation * SS(svGONGDONG, 2), 2)
+        Exit Function
+    End If
+        
+    
+   ss_water1 = 900
+      
+End Function
+
 
 
 
@@ -299,6 +348,7 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
         Exit Function
     End If
     
+    
     mypos = InStr(1, strPurpose, "축") '축산업
     If (mypos <> 0) Then
         aa_water = Round(AA(avCOW, 1) + nhead * AA(avCOW, 2), 2)
@@ -310,6 +360,34 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
 End Function
 
 
+Function aa_water1(qhp As Integer, strPurpose As String, Optional ByVal nhead As Integer = 30) As Double
+
+    'nhead - 축산업의 두수 ....
+
+
+    If (instr2(strPurpose, "전") Or instr2(strPurpose, "농")) Then '전작용, 농생활겸용
+        aa_water1 = Round(AA(avJEONJAK, 1) + qhp * AA(avJEONJAK, 2), 2)
+        Exit Function
+    End If
+        
+    If (instr2(strPurpose, "답") Or instr2(strPurpose, "양")) Then '답작용, 양어장용
+        aa_water1 = Round(AA(avDAPJAK, 1) + qhp * AA(avDAPJAK, 2), 2)
+        Exit Function
+    End If
+ 
+    If (instr2(strPurpose, "원")) Then '원예용
+        aa_water1 = Round(AA(avWONYE, 1) + qhp * AA(avWONYE, 2), 2)
+        Exit Function
+    End If
+ 
+    If (instr2(strPurpose, "축")) Then '축산업
+        aa_water1 = Round(AA(avCOW, 1) + nhead * AA(avCOW, 2), 2)
+        Exit Function
+    End If
+    
+   aa_water1 = 900
+      
+End Function
 
 
 
