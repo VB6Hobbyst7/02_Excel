@@ -1,6 +1,43 @@
 Attribute VB_Name = "Module_ReplaceSumToRange"
 Option Explicit
 
+Function CleanString(strIn As String) As String
+    Dim objRegex
+    Set objRegex = CreateObject("vbscript.regexp")
+    
+    With objRegex
+     .Global = True
+     .Pattern = "[^\d]+"
+      CleanString = .Replace(strIn, vbNullString)
+    End With
+End Function
+
+Function ExtractStartEnd_FromRange(rng As Range) As String()
+
+    Dim cellValue As String
+    Dim colonParam As Integer
+    
+    
+    Dim retValue(2) As String
+    Dim FirstValue As String
+    Dim SecondValue As String
+    
+
+    cellValue = rng.Address
+    cellValue = Replace(cellValue, "$", "")
+    
+    colonParam = InStr(cellValue, ":")
+    
+    FirstValue = Mid(cellValue, 1, colonParam - 1)
+    SecondValue = Mid(cellValue, colonParam + 1, Len(cellValue))
+
+    retValue(0) = CleanString(FirstValue)
+    retValue(1) = CleanString(SecondValue)
+    
+    ExtractStartEnd_FromRange = retValue
+    
+End Function
+
 Sub Extract_Ranges_From_Formula(rng As Range)
     
     Dim rCell As Range
@@ -36,7 +73,7 @@ Sub Extract_Ranges_From_Formula(rng As Range)
 End Sub
 
 
-'Uses Range.Find to get a range of all find results within a worksheet
+' Uses Range.Find to get a range of all find results within a worksheet
 ' Same as Find All from search dialog box
 '
 Function FindAll(rng As Range, What As Variant, Optional LookIn As XlFindLookIn = xlValues, Optional LookAt As XlLookAt = xlWhole, Optional SearchOrder As XlSearchOrder = xlByColumns, Optional SearchDirection As XlSearchDirection = xlNext, Optional MatchCase As Boolean = False, Optional MatchByte As Boolean = False, Optional SearchFormat As Boolean = False) As Range
@@ -60,7 +97,6 @@ End Function
 
 
 Function RangeToStringArray(myRange As Range) As String()
-
     ReDim strArray(myRange.Cells.Count - 1) As String
     Dim idx As Long
     Dim c As Range
@@ -75,17 +111,14 @@ End Function
 
 
 Function SerializeRange(theRange As Excel.Range) As String()
-    
     Dim cell As Range
     Dim values() As String
     Dim i As Integer
     
     i = 0
-    
     ReDim values(theRange.Cells.Count)
     
     For Each cell In theRange
-    
            values(i) = cell.Address
            i = i + 1
     Next cell
@@ -100,7 +133,6 @@ Sub serialize_test()
     ar = SerializeRange(Range("C11:C14"))
     
     Debug.Print ar(0)
-    
  End Sub
 
 
@@ -108,9 +140,8 @@ Sub serialize_test()
  Sub ReplaceSUMtoEachCell()
 
     Dim ws As Worksheet
-    Dim iList As Range, iName, rCell  As Range
-    Dim aLR As Long, cLR As Long
-    
+    Dim iList As Range, iName As Range
+        
     Dim strRange As Variant
     Dim strResult As String
     Dim i As Integer
@@ -118,32 +149,20 @@ Sub serialize_test()
     Dim cellValue, Value As String
     Dim openingParen As Integer
     Dim closingParen As Integer
-    Dim colonParam As Integer
-    
-    
-    
 
     Set ws = ThisWorkbook.ActiveSheet
-
     Set iList = FindAll(ws.UsedRange, "SUM", xlFormulas, xlPart)
     
-'    For Each iName In iList
-'        Debug.Print iName.Address
-'    Next
-'
-        
+    For Each iName In iList
     
-    For Each rCell In iList
-    
-        cellValue = rCell.Formula
+        cellValue = iName.Formula
     
         openingParen = InStr(cellValue, "(")
         closingParen = InStr(cellValue, ")")
     
     
         Value = Mid(cellValue, openingParen + 1, closingParen - openingParen - 1)
-        'Debug.Print Value, " ", cellValue
-    
+            
         strResult = "="
         strRange = SerializeRange(Range(Value))
         
@@ -152,15 +171,12 @@ Sub serialize_test()
         Next i
         
         strResult = Left(strResult, Len(strResult) - 2)
-        'Debug.Print strResult
-        
+               
         strResult = Replace(strResult, "$", "")
-        rCell.Formula = strResult
+        iName.Formula = strResult
 
-    Next rCell
+    Next iName
     
-
-
 End Sub
     
     
