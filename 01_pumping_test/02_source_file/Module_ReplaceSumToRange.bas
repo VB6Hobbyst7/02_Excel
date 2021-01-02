@@ -2,6 +2,7 @@ Attribute VB_Name = "Module_ReplaceSumToRange"
 Option Explicit
 
 Function CleanString(strIn As String) As String
+
     Dim objRegex
     Set objRegex = CreateObject("vbscript.regexp")
     
@@ -10,35 +11,38 @@ Function CleanString(strIn As String) As String
      .Pattern = "[^\d]+"
       CleanString = .Replace(strIn, vbNullString)
     End With
+    
 End Function
+
+
+
+'Extract start and end number in range
+'Exam : "A12:A15"
+'12,15
 
 Function ExtractStartEnd_FromRange(rng As Range) As String()
 
     Dim cellValue As String
     Dim colonParam As Integer
-    
-    
+        
     Dim retValue(2) As String
-    Dim FirstValue As String
-    Dim SecondValue As String
-    
+   
 
     cellValue = rng.Address
     cellValue = Replace(cellValue, "$", "")
     
     colonParam = InStr(cellValue, ":")
     
-    FirstValue = Mid(cellValue, 1, colonParam - 1)
-    SecondValue = Mid(cellValue, colonParam + 1, Len(cellValue))
-
-    retValue(0) = CleanString(FirstValue)
-    retValue(1) = CleanString(SecondValue)
+    retValue(0) = CleanString(Mid(cellValue, 1, colonParam - 1))
+    retValue(1) = CleanString(Mid(cellValue, colonParam + 1, Len(cellValue)))
     
     ExtractStartEnd_FromRange = retValue
     
 End Function
 
-Sub Extract_Ranges_From_Formula(rng As Range)
+
+
+Function Extract_Ranges_From_Formula(rng As Range) As String()
     
     Dim rCell As Range
     Dim cellValue As String
@@ -47,28 +51,43 @@ Sub Extract_Ranges_From_Formula(rng As Range)
     Dim closingParen As Integer
     Dim colonParam As Integer
     
-    Dim FirstValue As String
-    Dim SecondValue As String
+    Dim retValue() As String
+    Dim i As Long: i = 0
+        
+       
+    ReDim retValue(0 To rng.Count - 1, 0 To 1)
     
-    
-    'strRange = "C2:C3"
     
     For Each rCell In rng
-    
         cellValue = rCell.Formula
     
         openingParen = InStr(cellValue, "(")
         colonParam = InStr(cellValue, ":")
         closingParen = InStr(cellValue, ")")
-    
-    
-        FirstValue = Mid(cellValue, openingParen + 1, colonParam - openingParen - 1)
-        SecondValue = Mid(cellValue, colonParam + 1, closingParen - colonParam - 1)
-    
-        Debug.Print FirstValue
-        Debug.Print SecondValue
-    
+        
+        retValue(i, 0) = Mid(cellValue, openingParen + 1, colonParam - openingParen - 1)
+        retValue(i, 1) = Mid(cellValue, colonParam + 1, closingParen - colonParam - 1)
+            
+        i = i + 1
     Next rCell
+    
+    Extract_Ranges_From_Formula = retValue
+
+End Function
+
+
+Private Sub ExtractTest()
+
+    Dim rng As Range
+    Dim ret As Variant
+    
+    Set rng = Range("E25")
+    Set rng = Union(rng, Range("G25"))
+    Set rng = Union(rng, Range("I25"))
+    
+    
+    ret = Extract_Ranges_From_Formula(rng)
+    Debug.Print ret(0, 0)
 
 End Sub
 
@@ -127,11 +146,10 @@ Function SerializeRange(theRange As Excel.Range) As String()
     
 End Function
 
-Sub serialize_test()
+Private Sub serialize_test()
     Dim ar As Variant
     
     ar = SerializeRange(Range("C11:C14"))
-    
     Debug.Print ar(0)
  End Sub
 
@@ -178,6 +196,9 @@ Sub serialize_test()
     Next iName
     
 End Sub
+
+
+
     
     
     
