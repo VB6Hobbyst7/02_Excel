@@ -11,8 +11,9 @@ Private Function getID_from_sheet() As Integer
     Dim strSheetName As String
     Dim ireturn As Integer
     
-    strSheetName = ActiveSheet.Name
-
+   strSheetName = ActiveSheet.Name
+    
+   ireturn = 999
    If InStr(strSheetName, "총괄") <> 0 Then ireturn = 1
    If InStr(strSheetName, "영향조사") <> 0 Then ireturn = 2
    If InStr(strSheetName, "사후관리") <> 0 Then ireturn = 3
@@ -68,6 +69,7 @@ Sub make_copy()
 
     Call preprocess
     sheetID = getID_from_sheet
+    If sheetID = 999 Then Exit Sub
           
     Call ReplaceSUMtoEachCell
     val = insert_in_a_sheet_by_input()
