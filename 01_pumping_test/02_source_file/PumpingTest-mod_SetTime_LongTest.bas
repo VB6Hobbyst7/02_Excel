@@ -55,7 +55,7 @@ Function find_stable_time() As Integer
     
     For i = 30 To 50
             
-        If Range("AB" & CStr(i)).Value = Range("AB" & CStr(i + 1)) Then
+        If Range("AC" & CStr(i)).Value = Range("AC" & CStr(i + 1)) Then
             'MsgBox "found " & "AB" & CStr(i) & " time : " & Range("Z" & CStr(i)).Value
             
             find_stable_time = i
@@ -100,6 +100,13 @@ Sub OptionButton_Setting(i As Integer)
         Case 44:
             shLongTermTest.Frame1.Controls("OptionButton17").Value = True
             MY_TIME = 44
+        Case 45:
+            shLongTermTest.Frame1.Controls("OptionButton18").Value = True
+            MY_TIME = 45
+        Case 46:
+            shLongTermTest.Frame1.Controls("OptionButton19").Value = True
+            MY_TIME = 46
+            
         Case Else:
             shLongTermTest.Frame1.Controls("OptionButton14").Value = True
             MY_TIME = 41
@@ -127,14 +134,14 @@ Sub TimeSetting()
     If stable_time < my_random_time Then
         h1 = stable_time
         h2 = my_random_time
-        Range("ab" & CStr(h1)).Select
-        myRange = "AB" & CStr(h1) & ":AB" & CStr(h2)
+        Range("ac" & CStr(h1)).Select
+        myRange = "AC" & CStr(h1) & ":AC" & CStr(h2)
         
     ElseIf stable_time > my_random_time Then
         h1 = my_random_time
         h2 = stable_time
-        Range("ab" & CStr(h2 + 1)).Select
-        myRange = "AB" & CStr(h1 + 1) & ":AB" & CStr(h2 + 1)
+        Range("ac" & CStr(h2 + 1)).Select
+        myRange = "AC" & CStr(h1 + 1) & ":AC" & CStr(h2 + 1)
     Else
         Exit Sub
     End If
@@ -185,6 +192,13 @@ Sub setForRandomTime(i As Integer)
         Case 44:
             shLongTermTest.Frame1.Controls("OptionButton17").Value = True
             MY_TIME = 44
+        Case 45:
+            shLongTermTest.Frame1.Controls("OptionButton18").Value = True
+            MY_TIME = 45
+        Case 46:
+            shLongTermTest.Frame1.Controls("OptionButton19").Value = True
+            MY_TIME = 46
+            
         Case Else:
             shLongTermTest.Frame1.Controls("OptionButton14").Value = True
             MY_TIME = 41
@@ -211,14 +225,14 @@ Sub RandomTimeSetting()
     If stable_time < my_random_time Then
         h1 = stable_time
         h2 = my_random_time
-        Range("ab" & CStr(h1)).Select
-        myRange = "AB" & CStr(h1) & ":AB" & CStr(h2)
+        Range("ac" & CStr(h1)).Select
+        myRange = "AC" & CStr(h1) & ":AC" & CStr(h2)
         
     ElseIf stable_time > my_random_time Then
         h1 = my_random_time
         h2 = stable_time
-        Range("ab" & CStr(h2 + 1)).Select
-        myRange = "AB" & CStr(h1 + 1) & ":AB" & CStr(h2 + 1)
+        Range("ac" & CStr(h2 + 1)).Select
+        myRange = "AC" & CStr(h1 + 1) & ":AC" & CStr(h2 + 1)
     Else
         Exit Sub
     End If
@@ -272,29 +286,53 @@ End Sub
 
 Sub resetValue()
     
-    Range("o3").ClearContents
-    Range("s1").Value = 0.1
-    Range("k6").Value = 0.2
+    Range("p3").ClearContents
+    Range("t1").Value = 0.1
+    Range("l6").Value = 0.2
         
-    Range("n3:n14").ClearContents
+    Range("o3:o14").ClearContents
    
 
 End Sub
 
-Sub findAnswer_LongTest()
-    
-    If (Range("O3").Value > 0) Then Exit Sub
-    
-    Range("K10").GoalSeek goal:=0, ChangingCell:=Range("S1")
-    Range("o3").Value = Abs(Range("j10").Value)
-    
-    If Range("k8").Value < 0 Then
-        cellRED ("k8")
+
+Function isPositive(ByVal data As Double) As Double
+
+    If data < 0 Then
+        isPositive = False
     Else
-        cellBLACK ("k8")
+        isPositive = True
     End If
     
-    shSkinFactor.Range("d5").Value = Round(Range("S1").Value, 4)
+End Function
+
+
+Function CellReverse(ByVal data As Double) As Double
+
+If data < 0 Then
+    CellReverse = Abs(data)
+Else
+    CellReverse = -data
+End If
+
+
+End Function
+
+Sub findAnswer_LongTest()
+    
+    If (Range("p3").Value > 0) Then Exit Sub
+    
+    Range("l10").GoalSeek goal:=0, ChangingCell:=Range("t1")
+    
+    Range("p3").Value = CellReverse(Range("k10").Value)
+    
+    If Range("l8").Value < 0 Then
+        cellRED ("l8")
+    Else
+        cellBLACK ("l8")
+    End If
+    
+    shSkinFactor.Range("d5").Value = Round(Range("t1").Value, 4)
     
 End Sub
 
@@ -302,8 +340,8 @@ Sub check_LongTest()
 
     Dim igoal, k0, k1 As Double
     
-    k1 = Range("k8").Value
-    k0 = Range("k6").Value
+    k1 = Range("l8").Value
+    k0 = Range("l6").Value
     
     If k0 = k1 Then Exit Sub
     If k1 > 0 Then Exit Sub
@@ -314,12 +352,12 @@ Sub check_LongTest()
         igoal = 0.3
     End If
     
-    Range("k8").GoalSeek goal:=igoal, ChangingCell:=Range("n3")
+    Range("l8").GoalSeek goal:=igoal, ChangingCell:=Range("o3")
      
-    If Range("k8").Value < 0 Then
-        cellRED ("k8")
+    If Range("l8").Value < 0 Then
+        cellRED ("l8")
     Else
-        cellBLACK ("k8")
+        cellBLACK ("l8")
     End If
     
 
@@ -359,4 +397,6 @@ Sub check_StepTest()
     
 
 End Sub
+
+
 
