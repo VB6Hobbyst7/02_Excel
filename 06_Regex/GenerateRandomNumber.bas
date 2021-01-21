@@ -38,21 +38,21 @@ Sub fillData(ByVal rg As Range)
     
     t = Fix(targetNumber)
         
-    For i = 0 To 2
+    For i = 1 To 3
         j = a(i)
         r(j) = t
         sum = sum + t
     Next i
     
     Randomize
-    For i = 3 To 5
+    For i = 4 To 6
         j = a(i)
         r(j) = t + (Int(Rnd * 3) + 1)
         sum = sum + r(j)
     Next i
     
     Randomize
-    For i = 6 To 7
+    For i = 7 To 8
         j = a(i)
         r(j) = t + (Int(Rnd * 2) + 1)
         sum = sum + r(j)
@@ -61,15 +61,15 @@ Sub fillData(ByVal rg As Range)
     x = (targetNumber * 10 - CDbl(sum)) / 2
     
     If isTheRest(x) Then
-        j = a(8)
-        r(j) = WorksheetFunction.RoundUp(x, 0)
         j = a(9)
+        r(j) = WorksheetFunction.RoundUp(x, 0)
+        j = a(10)
         r(j) = WorksheetFunction.RoundUp(x, 0) - 1
         
         Cells(31, rg.Column).Value = "in"
         Cells(31, rg.Column + 1).Value = x
     Else
-        For i = 8 To 9
+        For i = 9 To 10
             j = a(i)
             r(j) = x
         Next i
@@ -126,7 +126,7 @@ Function ProduceUniqRandom() As Variant
     
     Set sh = ActiveSheet
     myStart = 1: myEnd = 10
-    ReDim a(0 To myEnd - myStart)
+    ReDim a(1 To myEnd - myStart + 1)
     
     With CreateObject("System.Collections.SortedList")
         Randomize
@@ -135,8 +135,8 @@ Function ProduceUniqRandom() As Variant
             .Item(Rnd) = i
         Next i
         
-        For i = 0 To .Count - 1
-             a(i) = .GetByIndex(i)
+        For i = 1 To .Count
+             a(i) = .GetByIndex(i - 1)
         Next
     End With
     
