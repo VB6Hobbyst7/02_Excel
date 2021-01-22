@@ -1,22 +1,20 @@
 Attribute VB_Name = "GenerateRandomNumber"
 Option Explicit
 
-Sub test()
+Sub GenerateRandomNumber()
 
-Dim i As Integer
-Dim result(1 To 10) As Integer
-
-
-Randomize
-
- For i = 1 To 10
+    Dim i As Integer
+    Dim result(1 To 10) As Integer
+    
+    Randomize
+    For i = 1 To 10
         Debug.Print Int(Rnd * 3) + 1
- Next i
+    Next i
 
 End Sub
 
 
-Sub test2()
+Sub GenerateSoilHardness()
 
     Call fillData(Range("B35"))
     Call fillData(Range("E35"))
@@ -119,22 +117,23 @@ Function getAverage(r As Variant) As Double
 
 End Function
 
+
 Function ProduceUniqRandom() As Variant
+
     Dim myStart As Long, myEnd As Long, i As Long
     Dim a()
     Dim sh As Worksheet
     
     Set sh = ActiveSheet
     myStart = 1: myEnd = 10
-    ReDim a(1 To myEnd - myStart + 1)
     
+    ReDim a(1 To myEnd - myStart + 1)
+        
     With CreateObject("System.Collections.SortedList")
         Randomize
-        
         For i = myStart To myEnd
-            .Item(Rnd) = i
+            .item(Rnd) = i
         Next i
-        
         For i = 1 To .Count
              a(i) = .GetByIndex(i - 1)
         Next
