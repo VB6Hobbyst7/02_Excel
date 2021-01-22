@@ -138,27 +138,21 @@ Function FillData(ByVal rg As Range) As Variant
     
     Dim a As Variant, i As Integer, j As Integer
     Dim targetNumber As Double, t As Integer
-    Dim r(1 To 20) As Double, x As Double, sum As Integer
+    Dim r(1 To 20) As Double, x As Double
     Dim r2 As Variant
     
-    a = ProduceUniqRandom
-    sum = 0
-    targetNumber = rg.Value
-    
-    't = Application.WorksheetFunction.RoundDown(targetNumber, 0)
-    
+    a = ProduceUniqRandom: targetNumber = rg.Value
     t = Fix(targetNumber)
      
     Randomize
     For i = 1 To 10
         j = a(i)
-        r(j) = t + (Int(Rnd * 20) + 3) * Sign
-        sum = sum + t
+        r(j) = t + Int(Rnd * 13) * Sign
     Next i
     
     For i = 11 To 20
         j = a(i)
-        r(j) = t + Int(Rnd * 20) * Sign
+        r(j) = t + Int(Rnd * 13) * Sign
     Next i
 
     Call ResultOut(rg, r)
