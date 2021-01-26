@@ -93,6 +93,7 @@ Sub test_C11()
 End Sub
 
 
+
 Sub test_C12()
     Dim i As Long
     Dim DataList As Object
@@ -122,6 +123,8 @@ Sub test_C12()
         Set DataList = Nothing
 
 End Sub
+
+'Test Japn Code page ...
 
 Sub test_C13()
     Dim i As Long
