@@ -62,7 +62,6 @@ Sub MoveInsertionPoint()
 End Sub
 
 
-
 Function GetWorksheet(shtName As String) As Worksheet
     On Error Resume Next
     Set GetWorksheet = Worksheets(shtName)
@@ -81,6 +80,19 @@ Sub CopyRestData(sheet As Integer)
 End Sub
 
 
+Sub EraseAllTempData()
+
+    Dim cnt As Integer, i As Integer
+    
+    cnt = Worksheets.Count
+    
+    For i = 1 To cnt - 1
+        Sheets(i).Activate
+        Call EraseDataCollection
+    Next i
+
+End Sub
+
 Sub DoDataCollection()
 
     Dim cnt As Integer, i As Integer
@@ -92,6 +104,7 @@ Sub DoDataCollection()
         Worksheets("NewSheet").Delete
         Application.DisplayAlerts = True
         Sheets.Add(After:=Sheets(cnt - 1)).Name = "NewSheet"
+        cnt = cnt - 1
     Else
         Sheets.Add(After:=Sheets(cnt)).Name = "NewSheet"
     End If
@@ -101,8 +114,10 @@ Sub DoDataCollection()
         Call CopyDataFromSheet(i)
         Call CopyRestData(i)
         Call CellDecoration
-        Call FinalDecoration
     Next
+    
+    Call FinalDecoration
+    Call EraseAllTempData
 
 End Sub
 
