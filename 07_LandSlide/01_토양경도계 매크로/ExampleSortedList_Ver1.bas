@@ -4,7 +4,7 @@ Option Explicit
 'http://egloos.zum.com/timebird/v/7403799
 'http://timebird.egloos.com/category/%EC%98%A4%ED%94%BC%EC%8A%A4%2FVBA%2FOffice.JS
 
-Sub demoArrayList()
+Private Sub demoArrayList()
     Dim arrList As Object
     Dim item
     
@@ -26,7 +26,7 @@ Sub demoArrayList()
     
 End Sub
 
-Sub demoSortedList()
+Private Sub demoSortedList()
     Dim sortedList As Object
     
     ' Create the SortedList
@@ -47,7 +47,7 @@ Sub demoSortedList()
     Next
 End Sub
 
-Sub demoQueue()
+Private Sub demoQueue()
     Dim queue As Object
     Dim peekAtFirst, doesContain, firstInQueue
     
@@ -81,7 +81,7 @@ Sub demoQueue()
     Set queue = Nothing
 End Sub
 
-Sub demoStack()
+Private Sub demoStack()
     Dim stack As Object
     Dim peekAtTopOfStack, doesContain, topStack
     

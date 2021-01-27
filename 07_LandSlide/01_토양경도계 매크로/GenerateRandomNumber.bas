@@ -1,7 +1,7 @@
 Attribute VB_Name = "GenerateRandomNumber"
 Option Explicit
 
-Sub GenerateRandomNumber()
+Private Sub GenerateRandomNumber()
 
     Dim i As Integer
     Dim result(1 To 10) As Integer
@@ -23,7 +23,7 @@ Sub GenerateSoilHardness()
 End Sub
 
 
-Sub fillData(ByVal rg As Range)
+Private Sub fillData(ByVal rg As Range)
     
     Dim a As Variant, i As Integer, j As Integer
     Dim targetNumber As Double, t As Integer
@@ -80,7 +80,7 @@ Sub fillData(ByVal rg As Range)
 End Sub
 
 
-Sub resultOut(ByVal rg As Range, r As Variant)
+Private Sub resultOut(ByVal rg As Range, r As Variant)
     Dim i As Integer
         
     For i = 1 To 10

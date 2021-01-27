@@ -1,7 +1,7 @@
 Attribute VB_Name = "Decoration_Main"
 Option Explicit
 
-Sub dataCollection()
+Private Sub dataCollection()
 Attribute dataCollection.VB_ProcData.VB_Invoke_Func = " \n14"
 
     Range("B9:B18").Select
@@ -24,7 +24,7 @@ Attribute dataCollection.VB_ProcData.VB_Invoke_Func = " \n14"
         
 End Sub
 
-Sub EraseDataCollection()
+Private Sub EraseDataCollection()
 
     Range("B21:K26").Select
     Selection.ClearContents
@@ -38,7 +38,7 @@ Sub EraseDataCollection()
 End Sub
 
 
-Sub CopyDataFromSheet(i As Integer)
+Private Sub CopyDataFromSheet(i As Integer)
         
     Sheets(i).Activate
     Call dataCollection
@@ -53,7 +53,7 @@ Sub CopyDataFromSheet(i As Integer)
     
 End Sub
 
-Sub MoveInsertionPoint()
+Private Sub MoveInsertionPoint()
 
     Range("C9999").Select
     Selection.End(xlUp).Select
@@ -68,7 +68,7 @@ Function GetWorksheet(shtName As String) As Worksheet
 End Function
 
 
-Sub CopyRestData(sheet As Integer)
+Private Sub CopyRestData(sheet As Integer)
     Dim i As Integer
     
     i = GetInsertionPoint()
@@ -93,7 +93,7 @@ Sub EraseAllTempData()
 
 End Sub
 
-Sub DoDataCollection()
+Sub MainProcedure()
 
     Dim cnt As Integer, i As Integer
     
@@ -120,12 +120,6 @@ Sub DoDataCollection()
     Call EraseAllTempData
 
 End Sub
-
-
-
-
-
-
 
 
 

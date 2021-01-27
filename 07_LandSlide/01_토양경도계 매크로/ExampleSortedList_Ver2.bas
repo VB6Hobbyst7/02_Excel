@@ -4,7 +4,7 @@ Option Explicit
 
 'http://www.eurus.dti.ne.jp/~yoneyama/Excel/vba/vba_sortedlist.html
 
-Sub test_A1()
+Private Sub test_A1()
 
     Dim DataList As Object
     Dim x, i As Long
@@ -25,7 +25,7 @@ Sub test_A1()
 
 End Sub
 
-Sub test_B1()
+Private Sub test_B1()
     Dim i As Long
     Dim DataList As Object
     Dim x
@@ -45,7 +45,7 @@ Sub test_B1()
 
 End Sub
 
-Sub test_B2()
+Private Sub test_B2()
     Dim i As Long
     Dim DataList As Object
     Dim x
@@ -65,7 +65,7 @@ Sub test_B2()
 End Sub
 
 
-Sub test_C11()
+Private Sub test_C11()
     Dim i As Long
     Dim DataList As Object
     Dim x
@@ -94,7 +94,7 @@ End Sub
 
 
 
-Sub test_C12()
+Private Sub test_C12()
     Dim i As Long
     Dim DataList As Object
     Dim x
@@ -126,7 +126,7 @@ End Sub
 
 'Test Japn Code page ...
 
-Sub test_C13()
+Private Sub test_C13()
     Dim i As Long
     Dim DataList As Object
     Dim x
