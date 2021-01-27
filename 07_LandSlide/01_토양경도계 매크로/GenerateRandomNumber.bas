@@ -29,6 +29,9 @@ Private Sub fillData(ByVal rg As Range)
     Dim targetNumber As Double, t As Integer
     Dim r(1 To 10) As Double, x As Double, sum As Integer
     
+    Dim FLAG As Boolean: FLAG = False
+    
+    
     a = ProduceUniqRandom: sum = 0
     targetNumber = rg.Value
     
@@ -64,16 +67,20 @@ Private Sub fillData(ByVal rg As Range)
         j = a(10)
         r(j) = WorksheetFunction.RoundUp(x, 0) - 1
         
-        Cells(31, rg.Column).Value = "in"
-        Cells(31, rg.Column + 1).Value = x
+        If (FLAG) Then
+            Cells(31, rg.Column).Value = "in"
+            Cells(31, rg.Column + 1).Value = x
+        End If
     Else
         For i = 9 To 10
             j = a(i)
             r(j) = x
         Next i
         
-        Cells(31, rg.Column).Value = "out"
-        Cells(31, rg.Column + 1).Value = x
+        If (FLAG) Then
+             Cells(31, rg.Column).Value = "out"
+             Cells(31, rg.Column + 1).Value = x
+        End If
     End If
     
     Call resultOut(rg, r)
@@ -84,7 +91,7 @@ Private Sub resultOut(ByVal rg As Range, r As Variant)
     Dim i As Integer
         
     For i = 1 To 10
-        Cells(20 + i, rg.Column).Value = r(i)
+        Cells(8 + i, rg.Column).Value = r(i)
     Next i
 End Sub
 
