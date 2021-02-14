@@ -15,6 +15,16 @@ Public Function WB_HEAD() As String
     
 End Function
 
+Sub ToggleWellRadius()
+
+    If (Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C9") Then
+        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!E5"
+    Else
+        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C9"
+    End If
+
+End Sub
+
 
 Sub janggi_01()
     

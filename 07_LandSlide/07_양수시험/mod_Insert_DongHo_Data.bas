@@ -56,6 +56,13 @@ Sub Make2880Document()
     Range("F109").Select
     ActiveWindow.SmallScroll Down:=-105
     
+    Application.Goto Reference:="Print_Area"
+    With Selection.Interior
+        .Pattern = xlNone
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
     Call Insert_DongHo_Data
     Call delete_dangye_column
     
