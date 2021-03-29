@@ -94,7 +94,12 @@ Sub insertRow()
     selection.AutoFill Destination:=Range("R" & i & ":R" & j), Type:=xlFillDefault
     
     Application.CutCopyMode = False
-
+    
+    ActiveWindow.LargeScroll Down:=-1
+    ActiveWindow.LargeScroll Down:=-1
+    ActiveWindow.LargeScroll Down:=-1
+    ActiveWindow.LargeScroll Down:=-1
+    
 End Sub
 
 
