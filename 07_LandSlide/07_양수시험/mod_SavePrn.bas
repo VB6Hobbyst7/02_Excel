@@ -17,10 +17,10 @@ End Function
 
 Sub ToggleWellRadius()
 
-    If (Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C9") Then
-        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!E5"
+    If (Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C8") Then
+        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!E4"
     Else
-        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C9"
+        Range("A27").Formula = "=Ω∫≈≤∆—≈Õ!C8"
     End If
 
 End Sub

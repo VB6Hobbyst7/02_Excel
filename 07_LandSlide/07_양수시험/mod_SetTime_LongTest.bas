@@ -61,8 +61,8 @@ Function find_stable_time() As Integer
 End Function
 
 Function initialize_myTime() As Integer
-    'Range("G17").Value = 840 + 60 * (i - 35)
-    initialize_myTime = (shSkinFactor.Range("g17").Value - 840) / 60 + 35
+    'Range("G16").Value = 840 + 60 * (i - 35)
+    initialize_myTime = (shSkinFactor.Range("g16").Value - 840) / 60 + 35
 End Function
 
 Sub OptionButton_Setting(i As Integer)
@@ -165,105 +165,13 @@ Sub setSkinTime(i As Integer)
     Application.ScreenUpdating = False
     
     shSkinFactor.Activate
-    Range("G17").Value = 840 + 60 * (i - 35)
+    Range("G16").Value = 840 + 60 * (i - 35)
     shLongTermTest.Activate
     
     Application.ScreenUpdating = True
 
 End Sub
 
-Sub setForRandomTime(i As Integer)
-    Select Case i
-        Case 33:
-            shLongTermTest.Frame1.Controls("OptionButton6").Value = True
-            MY_TIME = 33
-        Case 34:
-            shLongTermTest.Frame1.Controls("OptionButton7").Value = True
-            MY_TIME = 34
-        Case 35:
-            shLongTermTest.Frame1.Controls("OptionButton8").Value = True
-            MY_TIME = 35
-        Case 36:
-            shLongTermTest.Frame1.Controls("OptionButton9").Value = True
-            MY_TIME = 36
-        Case 37:
-            shLongTermTest.Frame1.Controls("OptionButton10").Value = True
-            MY_TIME = 37
-        Case 38:
-            shLongTermTest.Frame1.Controls("OptionButton11").Value = True
-            MY_TIME = 38
-        Case 39:
-            shLongTermTest.Frame1.Controls("OptionButton12").Value = True
-            MY_TIME = 39
-        Case 40:
-            shLongTermTest.Frame1.Controls("OptionButton13").Value = True
-            MY_TIME = 40
-        Case 41:
-            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
-            MY_TIME = 41
-        Case 42:
-            shLongTermTest.Frame1.Controls("OptionButton15").Value = True
-            MY_TIME = 42
-        Case 43:
-            shLongTermTest.Frame1.Controls("OptionButton16").Value = True
-            MY_TIME = 43
-        Case 44:
-            shLongTermTest.Frame1.Controls("OptionButton17").Value = True
-            MY_TIME = 44
-        Case 45:
-            shLongTermTest.Frame1.Controls("OptionButton18").Value = True
-            MY_TIME = 45
-        Case 46:
-            shLongTermTest.Frame1.Controls("OptionButton19").Value = True
-            MY_TIME = 46
-            
-        Case Else:
-            shLongTermTest.Frame1.Controls("OptionButton14").Value = True
-            MY_TIME = 41
-    End Select
-
-
-    Call setSkinTime(i)
-End Sub
-
-Sub RandomTimeSetting()
-    Dim my_random_time As Integer
-    Dim stable_time, h1, h2 As Integer
-    Dim myRange As String
-           
-   'Initialize the Rnd function
-    Randomize
-   
-    'Generate a random number between 5-100
-    my_random_time = CInt(38 + Rnd * 6)
-    'MsgBox CStr(my_random_time)
-    
-    stable_time = find_stable_time()
-    
-    If stable_time < my_random_time Then
-        h1 = stable_time
-        h2 = my_random_time
-        Range("ac" & CStr(h1)).Select
-        myRange = "AC" & CStr(h1) & ":AC" & CStr(h2)
-        
-    ElseIf stable_time > my_random_time Then
-        h1 = my_random_time
-        h2 = stable_time
-        Range("ac" & CStr(h2 + 1)).Select
-        myRange = "AC" & CStr(h1 + 1) & ":AC" & CStr(h2 + 1)
-    Else
-        Exit Sub
-    End If
-              
-    Selection.AutoFill Destination:=Range(myRange), Type:=xlFillDefault
-    
-    Call setForRandomTime(my_random_time)
-    
-    Selection.End(xlToLeft).Select
-    Selection.End(xlToLeft).Select
-    Selection.End(xlUp).Select
-    
-End Sub
 
 Sub cellRED(ByVal strcell As String)
 

@@ -28,7 +28,7 @@ Function sheets_count() As Long
     Dim i, nSheetsCount, nWell  As Integer
     Dim strSheetsName(50) As String
     
-    nSheetsCount = ThisWorkbook.Sheets.count
+    nSheetsCount = ThisWorkbook.Sheets.Count
     nWell = 0
       
     For i = 1 To nSheetsCount
@@ -43,6 +43,39 @@ Function sheets_count() As Long
     sheets_count = nWell
 
 End Function
+
+
+' https://www.google.com/search?q=excel+vba+how+to+get+number+from+string&oq=excel+vba+how+to+get+number+from+string&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8
+' https://stackoverflow.com/questions/28771802/extract-number-from-string-in-vba
+
+Function GetNumbers(str As String) As Long
+
+    Dim regex As Object
+    Dim matches As Variant
+    
+    Set regex = CreateObject("vbscript.regexp")
+    
+    regex.Pattern = "(\d+)"
+    regex.Global = True
+    
+    Set matches = regex.Execute(str)
+    GetNumbers = matches(0)
+End Function
+
+
+
+Function CleanString(strIn As String) As String
+    Dim objRegex
+    Set objRegex = CreateObject("vbscript.regexp")
+    With objRegex
+     .Global = True
+     .Pattern = "[^\d]+"
+    CleanString = .Replace(strIn, vbNullString)
+    End With
+End Function
+
+
+
 
 
 

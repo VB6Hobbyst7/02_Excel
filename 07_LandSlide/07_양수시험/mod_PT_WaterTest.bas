@@ -17,17 +17,17 @@ Public Sub ShowNumberOfRowsInSheet1Selection()
     Set selectedRange = Selection
    
     Dim areaCount As Long
-    areaCount = Selection.Areas.count
+    areaCount = Selection.Areas.Count
    
     If areaCount <= 1 Then
         MsgBox "The selection contains " & _
-               Selection.Rows.count & " rows."
+               Selection.Rows.Count & " rows."
     Else
         Dim areaIndex As Long
         areaIndex = 1
         For Each area In Selection.Areas
             MsgBox "Area " & areaIndex & " of the selection contains " & _
-                   area.Rows.count & " rows." & " Selection 2 " & Selection.Areas(2).Rows.count & " rows."
+                   area.Rows.Count & " rows." & " Selection 2 " & Selection.Areas(2).Rows.Count & " rows."
             areaIndex = areaIndex + 1
         Next
     End If
@@ -49,7 +49,7 @@ End Function
 Public Function myRandBetween2(i As Double, j As Double, Optional div As Double = 100) As Double
     Dim SIGN As Integer
 
-    myRandBetween = (Application.WorksheetFunction.RandBetween(i, j) / div)
+    myRandBetween2 = (Application.WorksheetFunction.RandBetween(i, j) / div)
     
 End Function
 

@@ -44,7 +44,7 @@ Sub make_long_document()
     Application.ScreenUpdating = False
 
     shLongTermTest.Select
-    shLongTermTest.Copy Before:=Sheets(Sheets.count)
+    shLongTermTest.Copy Before:=Sheets(Sheets.Count)
     
     Application.Goto Reference:="Print_Area"
     Selection.Copy
