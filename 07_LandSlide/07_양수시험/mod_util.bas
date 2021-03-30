@@ -60,8 +60,8 @@ Function GetNumbers(str As String) As Long
     
     Set matches = regex.Execute(str)
     GetNumbers = matches(0)
+    
 End Function
-
 
 
 Function CleanString(strIn As String) As String
@@ -75,6 +75,39 @@ Function CleanString(strIn As String) As String
 End Function
 
 
+'https://stackoverflow.com/questions/40365573/excel-vba-extract-numeric-value-in-string
+'Requires a reference to Microsoft VBScript Regular Expressions X.X
+
+Public Function ExtractNumber(inValue As String) As Double
+    With New regExp
+        .Pattern = "(\d{1,3},?)+(\.\d{2})?"
+        .Global = True
+        If .test(inValue) Then
+            ExtractNumber = CDbl(.Execute(inValue)(0))
+        End If
+    End With
+End Function
+
+
+'https://stackoverflow.com/questions/50994883/how-to-extract-numbers-from-a-text-string-in-vba
+
+Sub ExtractNumbers()
+    Dim str As String, regex As regExp, matches As MatchCollection, match As match
+
+    str = "ID CSys ID Set ID Set Value Set Title 7026..Plate Top MajorPrn Stress 7027..Plate Top MinorPrn Stress 7033..Plate Top VonMises Stress"
+
+    Set regex = New regExp
+    regex.Pattern = "\d+"      '~~~> Look for variable length numbers only
+    regex.Global = True
+
+    If (regex.test(str) = True) Then
+        Set matches = regex.Execute(str)   '~~~> Execute search
+
+        For Each match In matches
+            Debug.Print match.Value '~~~> Prints: 7026, 7027, 7033
+        Next
+    End If
+End Sub
 
 
 
