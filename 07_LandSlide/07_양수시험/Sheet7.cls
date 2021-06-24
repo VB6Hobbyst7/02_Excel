@@ -7,6 +7,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
+
 Private Sub CommandButton1_Click()
     Call janggi_01
 End Sub
@@ -20,9 +21,45 @@ Private Sub CommandButton3_Click()
 End Sub
 
 Private Sub CommandButton4_Click()
+    
     Call ToggleWellRadius
 End Sub
 
+
+
+'0 : skin factor, cell, C8
+'1 : Re1,         cell, E8
+'2 : Re2,         cell, H8
+'3 : Re3,         cell, G10
+
+
+Private Sub ToggleWellRadius()
+    Dim er As Integer
+    Dim cellformula As String
+    
+    er = GetEffectiveRadius
+        
+     Select Case er
+        Case erRE1
+            cellformula = "=SkinFactor!E8"
+        
+        Case erRE2
+            cellformula = "=SkinFactor!H8"
+            
+        Case erRE3
+            cellformula = "=SkinFactor!G10"
+        
+        Case Else
+            cellformula = "=SkinFactor!C8"
+    End Select
+
+    If (Range("A27").Formula = "=SkinFactor!E4") Then
+        Range("A27").Formula = cellformula
+    Else
+        Range("A27").Formula = "=SkinFactor!E4"
+    End If
+
+End Sub
 
 Private Sub Worksheet_Activate()
     Dim KeyCell As Range

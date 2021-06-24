@@ -255,7 +255,7 @@ Sub findAnswer_LongTest()
         cellBLACK ("l8")
     End If
     
-    shSkinFactor.Range("d6").Value = Round(Range("t1").Value, 4)
+    shSkinFactor.Range("d5").Value = Round(Range("t1").Value, 4)
     
 End Sub
 

@@ -19,6 +19,9 @@ Private Sub Worksheet_Activate()
     Dim KeyCell As Range
     Dim gong1, gong2 As String
     Dim gong As Long
+    Dim er As Integer
+    Dim cellformula As String
+    
     
     Set KeyCell = shInput.Range("J48")
     
@@ -31,6 +34,25 @@ Private Sub Worksheet_Activate()
         'MsgBox "different : " & g1 & " g2 : " & g2
         shInput.Range("i54").Value = gong1
     End If
+    
+
+    er = GetEffectiveRadius
+        
+     Select Case er
+        Case erRE1
+            cellformula = "=SkinFactor!E8"
+        
+        Case erRE2
+            cellformula = "=SkinFactor!H8"
+            
+        Case erRE3
+            cellformula = "=SkinFactor!G10"
+        
+        Case Else
+            cellformula = "=SkinFactor!C8"
+    End Select
+    
+    Range("A28").Formula = cellformula
     
 End Sub
 
