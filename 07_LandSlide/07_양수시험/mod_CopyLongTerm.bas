@@ -1,13 +1,13 @@
 Attribute VB_Name = "mod_CopyLongTerm"
 Sub make_step_document()
     '
-    ' 단계양수시험 복사
+    ' StepTest 복사
     ' select last sheet -- Sheets(Sheets.Count).Select
 
     Application.ScreenUpdating = False
     
-    Sheets("단계양수시험").Select
-    Sheets("단계양수시험").Copy Before:=Sheets(14)
+    Sheets("StepTest").Select
+    Sheets("StepTest").Copy Before:=Sheets(14)
   
     Application.Goto Reference:="Print_Area"
     Selection.Copy
@@ -38,7 +38,7 @@ End Sub
 
 Sub make_long_document()
     '
-    ' 장기양수시험복사 매크로
+    ' LongTest복사 매크로
    '
 
     Application.ScreenUpdating = False

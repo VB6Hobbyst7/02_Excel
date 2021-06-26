@@ -8,7 +8,7 @@ Sub adjustChartGraph()
     Dim Q0, Q1, E0, E1, SwQ0, SwQ1, IQ As Double
 
     ' IQ -- Initial Q
-    ' 가채수량이다. 양수량
+    ' SafeYield이다. 양수량
     
     Q0 = Range("D3").Value
     Q1 = Range("D7").Value

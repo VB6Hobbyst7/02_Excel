@@ -10,14 +10,14 @@ Function Contains(objCollection As Object, strName As String) As Boolean
  End Function
 
 Sub Make2880Document()
-    Sheets("장기양수시험").Select
-    Sheets("장기양수시험").Copy Before:=Sheets(13)
+    Sheets("LongTest").Select
+    Sheets("LongTest").Copy Before:=Sheets(13)
         
     If (Not Contains(Sheets, "out")) Then
-        Sheets("장기양수시험 (2)").name = "out"
+        Sheets("LongTest (2)").name = "out"
     Else
         Sheets("out").Delete
-        Sheets("장기양수시험 (2)").name = "out"
+        Sheets("LongTest (2)").name = "out"
     End If
     
     Application.Goto Reference:="Print_Area"
