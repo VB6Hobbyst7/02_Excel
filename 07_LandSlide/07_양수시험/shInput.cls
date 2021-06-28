@@ -41,20 +41,6 @@ Private Sub CommandButton7_Click()
     Call make1440sheet
 End Sub
 
-'2020/3/17 well add to 11 ...
-
-Sub GetNumbersTest()
-    Dim l, occur As Long
-    Dim str As String
-    
-    str = "°ø  ¹ø : W - 11"
-    Debug.Print str
-    
-    l = GetNumbers(str)
-    
-    Debug.Print l
-End Sub
-
 
 Private Sub Worksheet_Activate()
   
