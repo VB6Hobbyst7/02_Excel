@@ -12,7 +12,7 @@ End Function
 
 Public Function WB_HEAD() As String
 
-    WB_HEAD = MyDocsPath + "\" + Left(ThisWorkbook.name, 4)
+    WB_HEAD = MyDocsPath + "\" + Left(ThisWorkbook.name, 5)
     Debug.Print WB_HEAD
     
 End Function
@@ -56,7 +56,7 @@ End Sub
 
 Sub save_original()
 
-     ActiveWorkbook.SaveAs Filename:=WB_HEAD + "_Original File", FileFormat:= _
+     ActiveWorkbook.SaveAs Filename:=WB_HEAD + "_OriginalSaveFile", FileFormat:= _
                           xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False
 
 End Sub
