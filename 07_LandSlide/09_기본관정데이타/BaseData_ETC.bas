@@ -2,6 +2,7 @@ Attribute VB_Name = "BaseData_ETC"
 Option Explicit
 
 
+
 Public Function GetLengthByColor(ByVal tabColor As Variant) As Integer
     Dim n_sheets, i, j, nTab As Integer
     n_sheets = sheets_count()

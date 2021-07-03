@@ -1,24 +1,16 @@
 Attribute VB_Name = "BaseData_DrasticIndex"
 '±‚∫ª∞¸¡§µ•¿Ã≈∏ - µÂ∂ÛΩ∫∆Ω¿Œµ¶Ω∫
-
+Option Explicit
 
 Dim Dr, Rr As Single
 
 
-Private Sub TurnOffStuff()
+Public Enum DRASTIC_MODE
+    dmGENERAL = 0
+    dmCHEMICAL = 1
+End Enum
 
-    Application.Calculation = xlCalculationManual
-    Application.ScreenUpdating = False
-    
 
-End Sub
-
-Private Sub TurnOnStuff()
-
-    Application.Calculation = xlCalculationAutomatic
-    Application.ScreenUpdating = True
-    
-End Sub
 
 Sub ShiftNewYear()
 
@@ -497,25 +489,33 @@ Sub main_drasticindex()
 End Sub
 
 
-Function check_drasticindex() As String
+Function check_drasticindex(ByVal dmMode As Integer) As String
+   
+     ' dmGENERAL = 0
+     ' dmCHEMICAL = 1
 
     Dim value As Integer
     Dim result As String
-
-    value = Range("k29").value
+    
+    
+    If (dmMode = dmGENERAL) Then
+        value = Range("k30").value
+    Else
+        value = Range("k31").value
+    End If
     
      If (value <= 100) Then
-        result = "∏≈øÏ ≥∑¿Ω"
+        result = "∏≈øÏ≥∑¿Ω"
     ElseIf (value <= 120) Then
-        result = "≥∑¿Ω"
+        result = "≥∑ ¿Ω"
     ElseIf (value <= 140) Then
-        result = "∫Ò±≥¿˚ ≥∑¿Ω"
+        result = "∫Ò±≥¿˚≥∑¿Ω"
     ElseIf (value <= 160) Then
-        result = "¡ﬂ∞£ ¡§µµ"
+        result = "¡ﬂ∞£¡§µµ"
     ElseIf (value <= 180) Then
-        result = "≥Ù¿Ω"
+        result = "≥Ù ¿Ω"
     Else
-        result = "∏≈øÏ ≥Ù¿Ω"
+        result = "∏≈øÏ≥Ù¿Ω"
     End If
               
     check_drasticindex = result
@@ -530,90 +530,10 @@ Public Sub print_drastic_string()
       
     For i = 1 To n_sheets
          Worksheets(CStr(i)).Activate
-         Range("k26").value = check_drasticindex()
+         Range("k26").value = check_drasticindex(dmGENERAL)
+         Range("k27").value = check_drasticindex(dmCHEMICAL)
     Next i
 
-End Sub
-
-
-Private Sub initialize_wellstyle()
-
-    Range("C3:C22").Select
-    Selection.NumberFormat = "General"
-    With Selection
-        .HorizontalAlignment = xlGeneral
-        .VerticalAlignment = xlCenter
-        .MergeCells = False
-    End With
-    
-    With Selection
-        .HorizontalAlignment = xlCenter
-        .VerticalAlignment = xlCenter
-        .MergeCells = False
-    End With
-    
-    With Selection.Font
-        .name = "∏º¿∫ ∞ÌµÒ"
-        .Size = 10
-        .ThemeColor = xlThemeColorLight1
-    End With
-
-    Range("E19:G19").Select
-    With Selection.Font
-        .name = "∏º¿∫ ∞ÌµÒ"
-        .Size = 12
-        .ThemeColor = xlThemeColorLight1
-        .ThemeFont = xlThemeFontNone
-    End With
-    
-    Range("E21:G21").Select
-    With Selection.Font
-        .name = "∏º¿∫ ∞ÌµÒ"
-        .Size = 12
-        .ThemeColor = xlThemeColorLight1
-        .TintAndShade = 0
-        .ThemeFont = xlThemeFontNone
-    End With
-    
-    Range("B25:K29").Select
-    With Selection.Font
-        .name = "∏º¿∫ ∞ÌµÒ"
-        .Size = 11
-        .TintAndShade = 0
-        .ThemeFont = xlThemeFontNone
-    End With
-    
-    Range("d23").Select
-    
-End Sub
-
-Private Sub change_font_size()
-
-  Range("J25").Select
-  Selection.Font.Size = 10
-  Range("F26").Select
-  Selection.Font.Size = 10
-
-End Sub
-
-
-
-Public Sub make_wellstyle()
-    Dim n_sheets As Integer
-    Dim i As Integer
-    
-    n_sheets = sheets_count()
-    
-    Call TurnOffStuff
-    
-    For i = 1 To n_sheets
-         Worksheets(CStr(i)).Activate
-         Call initialize_wellstyle
-         Call change_font_size
-    Next i
-    
-    Call TurnOnStuff
-    
 End Sub
 
 

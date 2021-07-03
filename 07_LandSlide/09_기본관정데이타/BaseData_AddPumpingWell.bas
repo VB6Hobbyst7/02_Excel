@@ -1,35 +1,6 @@
-Attribute VB_Name = "BaseData_MakePumpingWell"
+Attribute VB_Name = "BaseData_AddPumpingWell"
 
 Option Explicit
-
-
-Dim ColorValue(1 To 20) As Long
-
-Public Sub InitialSetColorValue()
-
-    ColorValue(1) = RGB(192, 0, 0)
-    ColorValue(2) = RGB(255, 0, 0)
-    ColorValue(3) = RGB(255, 192, 0)
-    ColorValue(4) = RGB(255, 255, 0)
-    ColorValue(5) = RGB(146, 208, 80)
-    ColorValue(6) = RGB(0, 176, 80)
-    ColorValue(7) = RGB(0, 176, 240)
-    ColorValue(8) = RGB(0, 112, 192)
-    ColorValue(9) = RGB(0, 32, 96)
-    ColorValue(10) = RGB(112, 48, 160)
-    
-    ColorValue(11) = RGB(192 + 10, 10, 0)
-    ColorValue(12) = RGB(255, 0 + 10, 0)
-    ColorValue(13) = RGB(255, 192 + 10, 0)
-    ColorValue(14) = RGB(255, 255, 10)
-    ColorValue(15) = RGB(146 + 10, 208 + 10, 80 + 10)
-    ColorValue(16) = RGB(0 + 10, 176 + 10, 80)
-    ColorValue(17) = RGB(0 + 10, 176 + 10, 240 + 10)
-    ColorValue(18) = RGB(0 + 10, 112 + 10, 192)
-    ColorValue(19) = RGB(0 + 10, 32 + 10, 96)
-    ColorValue(20) = RGB(112, 48 + 10, 160 + 10)
-
-End Sub
 
 
 '쉬트를 생성할때에는 전체 관정데이타를 건들지 않고, 우선먼저 쉬트복제를 누르는것이 기본으로 정해져 있다.
@@ -117,57 +88,6 @@ Private Sub ChangeCellData(ByVal nsheet As Integer, ByVal nselect As Integer)
     
 End Sub
 
-
-Private Sub JojungData(ByVal nsheet As Integer)
-
-    Dim nselect As String
-
-    Range("C2, C3, C4, C5, C6, C7, C8, C15, C16, C17, C18, C19, E17, F21").Select
-    Range("F21").Activate
-
-    nsheet = nsheet + 3
-    '=Well!D7
-    nselect = Mid(Range("c2").Formula, 8)
-    
-    'Debug.Print Mid(Range("c2").Formula, 8) & ":" & nselect
-
-    Selection.Replace What:=nselect, Replacement:=CStr(nsheet), LookAt:=xlPart, _
-        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False
-
-    Range("E21").Select
-    Range("E21").Formula = "=Well!" & Cells(nsheet, "I").Address
-        
-End Sub
-
-
-Private Sub SetMyTabColor(ByVal index As Integer)
-
-    With ActiveWorkbook.Sheets(CStr(index)).Tab
-        .Color = ColorValue(index)
-        .TintAndShade = 0
-    End With
-
-End Sub
-
-
-
-'각각의 쉬트를 순회하면서, 셀의 참조값을 맟추어준다.
-'
-Public Sub JojungSheetData()
-
-    Dim n_sheets As Integer
-    Dim i As Integer
-
-    n_sheets = sheets_count()
-    
-    For i = 1 To n_sheets
-        Sheets(CStr(i)).Activate
-        Call JojungData(i)
-        Call SetMyTabColor(i)
-    Next i
-    
-End Sub
 
 
 

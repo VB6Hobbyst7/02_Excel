@@ -2,6 +2,20 @@ Attribute VB_Name = "BaseData_Util"
 Option Explicit
 
 
+Public Sub TurnOffStuff()
+
+    Application.Calculation = xlCalculationManual
+    Application.ScreenUpdating = False
+    
+
+End Sub
+
+Public Sub TurnOnStuff()
+
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+    
+End Sub
 
 Public Sub Range_End_Method()
     'Finds the last non-blank cell in a single row or column
