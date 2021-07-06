@@ -8,25 +8,48 @@ Private Function lastRowByKey(cell As String) As Long
 End Function
 
 
+Private Function lastRowByRowsCount(cell As String) As Long
+
+    lastRowByRowsCount = Cells(Rows.Count, cell).End(xlUp).Row
+
+End Function
+
+Private Sub clearRowA()
+
+    Columns("A:A").Select
+    Selection.Replace What:=" ", Replacement:="", LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False
+
+End Sub
+
+Private Function lastRowByFind() As Long
+    Dim lastRow As Long
+    
+    lastRow = Cells.Find("*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+    
+    lastRowByFind = lastRow
+End Function
+
 Private Sub DoCopy(lastRow As Long)
 Attribute DoCopy.VB_ProcData.VB_Invoke_Func = " \n14"
 
     Range("F2:H" & lastRow).Select
-    selection.Copy
+    Selection.Copy
     
     Range("M2").Select
     ActiveSheet.Paste
     
     
     Range("K2:K" & lastRow).Select
-    selection.Copy
+    Selection.Copy
     
     Range("P2").Select
-    selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
         
     Range("J2:J" & lastRow).Select
-    selection.Copy
+    Selection.Copy
     
     Range("Q2").Select
     ActiveSheet.Paste
@@ -40,7 +63,7 @@ End Sub
 Private Sub CleanSection(lastRow As Long)
 
     Range("M2:Q" & lastRow).Select
-    selection.ClearContents
+    Selection.ClearContents
     Range("P14").Select
     
 End Sub
@@ -66,15 +89,18 @@ Sub SubModuleCleanCopySection()
 End Sub
 
 Sub insertRow()
-'
 
     Dim lastRow As Long, i As Long, j As Long
     Dim selection_origin, selection_target As String
     
-    lastRow = lastRowByKey("A1")
+    'lastRow = lastRowByKey("A1")
     
+    Call clearRowA
+    lastRow = lastRowByRowsCount("A")
+    
+
     Rows(CStr(lastRow + 1) & ":" & CStr(lastRow + 2)).Select
-    selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
     
     
     i = lastRowByKey("A1"): j = i + 2
@@ -82,16 +108,16 @@ Sub insertRow()
     selection_target = "A" & i & ":D" & j
     
     Range(selection_origin).Select
-    selection.AutoFill Destination:=Range(selection_target), Type:=xlFillDefault
+    Selection.AutoFill Destination:=Range(selection_target), Type:=xlFillDefault
  
     selection_origin = "J" & i & ":L" & i
     selection_target = "J" & i & ":L" & j
 
     Range(selection_origin).Select
-    selection.AutoFill Destination:=Range(selection_target), Type:=xlFillDefault
+    Selection.AutoFill Destination:=Range(selection_target), Type:=xlFillDefault
     
     Range("R" & i).Select
-    selection.AutoFill Destination:=Range("R" & i & ":R" & j), Type:=xlFillDefault
+    Selection.AutoFill Destination:=Range("R" & i & ":R" & j), Type:=xlFillDefault
     
     Application.CutCopyMode = False
     
@@ -99,7 +125,8 @@ Sub insertRow()
     ActiveWindow.LargeScroll Down:=-1
     ActiveWindow.LargeScroll Down:=-1
     ActiveWindow.LargeScroll Down:=-1
-    
+
+
 End Sub
 
 

@@ -26,397 +26,47 @@ Public Enum AA_VALUE
 End Enum
 
 
-Private Sub init_nonsan()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.63
-    
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 0.173
-    SS(svGONGDONG, 2) = 0.21
-    
-    SS(svMAEUL, 1) = 7.13
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 5.66
-    AA(avJEONJAK, 2) = 0.014
-    
-    AA(avDAPJAK, 1) = 1.98
-    AA(avDAPJAK, 2) = 0.044
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
-Private Sub init_daejeon()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.73
-
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 0.173
-    SS(svGONGDONG, 2) = 0.21
-    
-    SS(svMAEUL, 1) = 7.13
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 5.66
-    AA(avJEONJAK, 2) = 0.014
-    
-    AA(avDAPJAK, 1) = 1.98
-    AA(avDAPJAK, 2) = 0.044
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-
-End Sub
-
-
-Private Sub init_timeworld()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.8
-
-    SS(svILBAN, 1) = 2.119
-    SS(svILBAN, 2) = 0.021
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 7.13
-    SS(svGONGDONG, 2) = 0.001
-    
-    SS(svMAEUL, 1) = 6.463
-    SS(svMAEUL, 2) = 0.178
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 5.66
-    AA(avJEONJAK, 2) = 0.014
-    
-    AA(avDAPJAK, 1) = 1.98
-    AA(avDAPJAK, 2) = 0.044
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-
-End Sub
-
-
-
-Private Sub init_yeonki()
-
-   
-    SS(svGAJUNG, 1) = 0.265
-    SS(svGAJUNG, 2) = 0.181
-    SS_CITY = 2.75
-
-    SS(svILBAN, 1) = 3.521
-    SS(svILBAN, 2) = 0.011
-    
-    SS(svSCHOOL, 1) = 11.687
-    SS(svSCHOOL, 2) = 0.007
-    
-    SS(svGONGDONG, 1) = 0.265
-    SS(svGONGDONG, 2) = 0.181
-    
-    SS(svMAEUL, 1) = 7.287
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 5.66
-    AA(avJEONJAK, 2) = 0.014
-    
-    AA(avDAPJAK, 1) = 1.98
-    AA(avDAPJAK, 2) = 0.044
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-
-End Sub
-
-Private Sub init_boryoung()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.52
-    
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 0.173
-    SS(svGONGDONG, 2) = 0.21
-    
-    SS(svMAEUL, 1) = 7.13
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 6.964
-    AA(avJEONJAK, 2) = 0.013
-    
-    AA(avDAPJAK, 1) = 2.089
-    AA(avDAPJAK, 2) = 0.043
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
-Private Sub init_dangjin()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.59
-    
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 0.173
-    SS(svGONGDONG, 2) = 0.21
-    
-    SS(svMAEUL, 1) = 7.13
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 6.964
-    AA(avJEONJAK, 2) = 0.013
-    
-    AA(avDAPJAK, 1) = 2.089
-    AA(avDAPJAK, 2) = 0.043
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
-Private Sub init_yesan()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.55
-    
-    SS(svILBAN, 1) = 3.521
-    SS(svILBAN, 2) = 0.011
-    
-    SS(svSCHOOL, 1) = 11.687
-    SS(svSCHOOL, 2) = 0.007
-    
-    SS(svGONGDONG, 1) = 0.265
-    SS(svGONGDONG, 2) = 0.181
-    
-    SS(svMAEUL, 1) = 7.287
-    SS(svMAEUL, 2) = 0.001
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 6.964
-    AA(avJEONJAK, 2) = 0.013
-    
-    AA(avDAPJAK, 1) = 2.089
-    AA(avDAPJAK, 2) = 0.043
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
-
-Private Sub init_mokpo()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.71
-    
-    SS(svILBAN, 1) = 2.119
-    SS(svILBAN, 2) = 0.021
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 7.13
-    SS(svGONGDONG, 2) = 0.001
-    
-    SS(svMAEUL, 1) = 6.463
-    SS(svMAEUL, 2) = 0.178
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 6.964
-    AA(avJEONJAK, 2) = 0.013
-    
-    AA(avDAPJAK, 1) = 2.089
-    AA(avDAPJAK, 2) = 0.043
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
-
-Private Sub init_daegu()
-
-   
-    SS(svGAJUNG, 1) = 0.173
-    SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.8
-    
-    SS(svILBAN, 1) = 2.119
-    SS(svILBAN, 2) = 0.021
-    
-    SS(svSCHOOL, 1) = 7.986
-    SS(svSCHOOL, 2) = 0.005
-    
-    SS(svGONGDONG, 1) = 7.13
-    SS(svGONGDONG, 2) = 0.001
-    
-    SS(svMAEUL, 1) = 6.463
-    SS(svMAEUL, 2) = 0.178
-    
-'----------------------------------------
-
-    AA(avJEONJAK, 1) = 5.66
-    AA(avJEONJAK, 2) = 0.014
-    
-    AA(avDAPJAK, 1) = 1.98
-    AA(avDAPJAK, 2) = 0.044
-    
-    AA(avWONYE, 1) = 2.789
-    AA(avWONYE, 2) = 0.011
-    
-    AA(avCOW, 1) = 3.48
-    AA(avCOW, 2) = 0.009
-    
-    AA(avPIG, 1) = 4.719
-    AA(avPIG, 2) = 0.001
-    
-    AA(avCHICKEN, 1) = 5.492
-    AA(avCHICKEN, 2) = 0.041
-    
-End Sub
-
 Sub initialize()
         
-       'Call init_nonsan
-       'Call init_daejeon
-       
-       'Call init_boryoung
-       
-       'Call init_yeonki
-       'Call init_timeworld
-       
-       'Call init_dangjin
-       'Call init_mokpo
-       
-       'Call init_yesan
-       
-       Call init_daegu
-       
+    ' 세종특별자치시
+    
+    SS(svGAJUNG, 1) = 0.173
+    SS(svGAJUNG, 2) = 0.21
+    SS_CITY = 2.57
+
+    SS(svILBAN, 1) = 3.154
+    SS(svILBAN, 2) = 0.023
+    
+    SS(svSCHOOL, 1) = 7.986
+    SS(svSCHOOL, 2) = 0.005
+    
+    SS(svGONGDONG, 1) = 7.13
+    SS(svGONGDONG, 2) = 0.001
+    
+    SS(svMAEUL, 1) = 6.463
+    SS(svMAEUL, 2) = 0.178
+    
+'----------------------------------------
+
+    AA(avJEONJAK, 1) = 5.66
+    AA(avJEONJAK, 2) = 0.014
+    
+    AA(avDAPJAK, 1) = 1.98
+    AA(avDAPJAK, 2) = 0.044
+    
+    AA(avWONYE, 1) = 2.789
+    AA(avWONYE, 2) = 0.011
+    
+    AA(avCOW, 1) = 3.48
+    AA(avCOW, 2) = 0.009
+    
+    AA(avPIG, 1) = 4.719
+    AA(avPIG, 2) = 0.001
+    
+    AA(avCHICKEN, 1) = 5.492
+    AA(avCHICKEN, 2) = 0.041
+
+    
 End Sub
 
 
@@ -438,18 +88,6 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
         Exit Function
     End If
         
-    mypos = InStr(1, strPurpose, "민") '민방위용
-    If (mypos <> 0) Then
-        ss_water = Round(SS(svILBAN, 1) + qhp * SS(svILBAN, 2), 2)
-        Exit Function
-    End If
-    
-    mypos = InStr(1, strPurpose, "공") '공동주택용
-    If (mypos <> 0) Then
-        ss_water = Round(SS(svGONGDONG, 1) + npopulation * SS(svGONGDONG, 2), 2)
-        Exit Function
-    End If
-    
     
     mypos = InStr(1, strPurpose, "기") '기타
     If (mypos <> 0) Then
@@ -459,7 +97,7 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
     
     mypos = InStr(1, strPurpose, "농") '농생활겸용
     If (mypos <> 0) Then
-        ss_water = Round(SS(svGAJUNG, 1) + SS_CITY * SS(svGAJUNG, 2), 2)
+        ss_water = Round(SS(svILBAN, 1) + qhp * SS(svILBAN, 2), 2)
         Exit Function
     End If
     
@@ -474,6 +112,13 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
         ss_water = Round(SS(svMAEUL, 1) + npopulation * SS(svMAEUL, 2), 2)
         Exit Function
     End If
+    
+    mypos = InStr(1, strPurpose, "공사") '공사용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svILBAN, 1) + qhp * SS(svILBAN, 2), 2)
+        Exit Function
+    End If
+    
     
     mypos = InStr(1, strPurpose, "학") '학교용
     If (mypos <> 0) Then
@@ -515,15 +160,13 @@ Function aa_water(qhp As Integer, strPurpose As String, Optional ByVal nhead As 
         Exit Function
     End If
     
-    '농생활겸용
-    mypos = InStr(1, strPurpose, "농")
+    mypos = InStr(1, strPurpose, "농")  '농생활겸용
     If (mypos <> 0) Then
         aa_water = Round(AA(avJEONJAK, 1) + qhp * AA(avJEONJAK, 2), 2)
         Exit Function
     End If
     
-    '양어장용
-    mypos = InStr(1, strPurpose, "양")
+    mypos = InStr(1, strPurpose, "양") '양어장용
     If (mypos <> 0) Then
         aa_water = Round(AA(avDAPJAK, 1) + qhp * AA(avDAPJAK, 2), 2)
         Exit Function
