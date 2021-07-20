@@ -28,14 +28,14 @@ End Enum
 
 Sub initialize()
         
-    ' 세종특별자치시
+    '대전광역시
     
     SS(svGAJUNG, 1) = 0.173
     SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.57
+    SS_CITY = 2.43
 
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
+    SS(svILBAN, 1) = 2.119
+    SS(svILBAN, 2) = 0.021
     
     SS(svSCHOOL, 1) = 7.986
     SS(svSCHOOL, 2) = 0.005
@@ -119,10 +119,21 @@ Function ss_water(ByVal qhp As Integer, ByVal strPurpose As String, Optional ByV
         Exit Function
     End If
     
+    mypos = InStr(1, strPurpose, "공동") '공동주택용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svGONGDONG, 1) + npopulation * SS(svGONGDONG, 2), 2)
+        Exit Function
+    End If
+    
+    mypos = InStr(1, strPurpose, "민방") '민방위용
+    If (mypos <> 0) Then
+        ss_water = Round(SS(svILBAN, 1) + qhp * SS(svILBAN, 2), 2)
+        Exit Function
+    End If
     
     mypos = InStr(1, strPurpose, "학") '학교용
     If (mypos <> 0) Then
-        ss_water = Round(SS(svSCHOOL, 1) + 755 * SS(svSCHOOL, 2), 2)
+        ss_water = Round(SS(svSCHOOL, 1) + npopulation * SS(svSCHOOL, 2), 2)
         Exit Function
     End If
     

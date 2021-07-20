@@ -49,19 +49,19 @@ Private Sub init_daejeon()
    
     SS(svGAJUNG, 1) = 0.173
     SS(svGAJUNG, 2) = 0.21
-    SS_CITY = 2.73
+    SS_CITY = 2.43
 
-    SS(svILBAN, 1) = 3.154
-    SS(svILBAN, 2) = 0.023
+    SS(svILBAN, 1) = 2.119
+    SS(svILBAN, 2) = 0.021
     
     SS(svSCHOOL, 1) = 7.986
     SS(svSCHOOL, 2) = 0.005
     
-    SS(svGONGDONG, 1) = 0.173
-    SS(svGONGDONG, 2) = 0.21
+    SS(svGONGDONG, 1) = 7.13
+    SS(svGONGDONG, 2) = 0.001
     
-    SS(svMAEUL, 1) = 7.13
-    SS(svMAEUL, 2) = 0.001
+    SS(svMAEUL, 1) = 6.463
+    SS(svMAEUL, 2) = 0.178
     
 '----------------------------------------
 

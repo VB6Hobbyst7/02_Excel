@@ -14,12 +14,14 @@ Private Function lastRowByRowsCount(cell As String) As Long
 
 End Function
 
-Private Sub clearRowA()
+Public Sub clearRowA()
 
     Columns("A:A").Select
     Selection.Replace What:=" ", Replacement:="", LookAt:=xlPart, _
         SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
         ReplaceFormat:=False
+        
+    Range("m2").Select
 
 End Sub
 
@@ -94,11 +96,9 @@ Sub insertRow()
     Dim selection_origin, selection_target As String
     
     'lastRow = lastRowByKey("A1")
-    
-    Call clearRowA
+
     lastRow = lastRowByRowsCount("A")
     
-
     Rows(CStr(lastRow + 1) & ":" & CStr(lastRow + 2)).Select
     Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
     
